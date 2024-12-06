@@ -1,3 +1,4 @@
+CREATE
 CREATE TABLE office(
     office_id INT PRIMARY KEY AUTO_INCREMENT,
     office_name VARCHAR(255) NOT NULL,
