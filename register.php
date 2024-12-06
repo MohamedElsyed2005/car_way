@@ -1,29 +1,23 @@
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "car_way"; 
-$conn = new mysqli($servername, $username, $password, $dbname);
+require 'config.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 if(isset($_POST["submit"])){
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
-    $phone_num = $_POST['phone_num'];
     $email = $_POST["email"];
+    $phone_num = $_POST['phone_num'];
     $password = $_POST["password"];
-    $date = date("Y-m-d H:i:s"); 
-    // $encrypted_password = md5($password);
+    $address = $_POST["Address"];
 
-    $duplicate = mysqli_query($conn,"SELECT * FROM users WHERE email = '$email'");
+
+    $duplicate = mysqli_query($conn,"SELECT * FROM customer WHERE Email = '$email'");
+
     if(mysqli_num_rows($duplicate) > 0){
        echo "<script> alert('Try another Email');</script>";
     }
     else{
 
-        $query = "INSERT INTO users VALUES('', '$first_name', '$last_name', '$phone_num', '$email', '$password', '$date')";
+        $query = "INSERT INTO customer VALUES('', '$first_name', '$last_name','$email', '$phone_num', '$password', '$address')";
         mysqli_query($conn, $query);
         echo "<script> alert('Registration Successful');</script>";
     }

@@ -1,30 +1,21 @@
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "car_way"; 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+  session_start();
+  require 'config.php';
 
 if(!empty($_SESSION["id"])){
-    header("Location: welcome.html");
+    header("Location: User.php");
    }
    if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+    $result = mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email'");
     $row = mysqli_fetch_assoc($result);
 
     if(mysqli_num_rows($result) > 0){
         if($password == $row["password"]){
            $_SESSION["login"] = true;
-           $_SESSION["id"] = $row["id"];
-           header("Location: welcome.html");
+           $_SESSION["id"] = $row["customer_id"];
+           header("Location: User.php");
         }
         else{
             echo
