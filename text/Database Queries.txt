@@ -20,23 +20,24 @@ CREATE TABLE car(
 );
 
 CREATE TABLE customer(
-    ssn INT PRIMARY KEY,
+    customer_id INT PRIMARY KEY,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     address TEXT
 );
 
 CREATE TABLE car_reservation(
     reservation_id INT PRIMARY KEY AUTO_INCREMENT,
     car_id INT NOT NULL,
-    ssn INT NOT NULL,
+    customer_id INT NOT NULL,
     reserve_date DATE NOT NULL, 
     pick_up_date DATE NOT NULL,
     return_date DATE NOT NULL,
     FOREIGN KEY (car_id) REFERENCES car(car_id),
-    FOREIGN KEY (ssn) REFERENCES customer(ssn)
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 );
 
 CREATE TABLE payment(
