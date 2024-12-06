@@ -27,7 +27,7 @@
         <div class="car">
             <h1>Add New Car</h1>
             
-            <form action="Mod.php"  method="post" id="register">
+            <form action="Mod.php" method="post" >
 
                         <p>
                             <div class="info_lines" >Brand : </div>
@@ -42,7 +42,7 @@
 
                         <p>
                             <div class="info_lines" >Type :  </div>
-                            <select name="TYPE"class="info_input" name="type" id="type"> 
+                            <select class="info_input" name="type" id="type"> 
                             <option selected>SUV
                             <option>SPORT
                             <option>G-Class
@@ -68,7 +68,7 @@
 
                         <p>
                             <div class="info_lines" >Year of manufacture: </div>
-                                <input class="info_input" type="text" name="year" id="year" placeholder="Year of manufacture" size="60" >
+                                <input class="info_input" type="number" name="year" id="year" placeholder="Year of manufacture" size="60" >
                         </p>
 
 
@@ -78,13 +78,13 @@
                                 <input class="info_input" type="text" name="plate_id" id="plate_id" placeholder="Plate_id" size="60" >
                         </p>
 
-
+                        
                         <p>
                             <div class="info_lines" >Office_id : </div>
-                                <input class="info_input" type="text" name="office_id" id="Office_id" placeholder="Office_id" size="60" >
+                                <input class="info_input" type="number" name="office_id" id="Office_id" placeholder="Office_id" size="60" >
                         </p>
 
-                         <input  class="buttonSubmit" type="submit" value="Add Car" >
+                         <input  class="buttonSubmit" type="submit" value="Add Car" name="submit">
 
             </form>
         </div>

@@ -13,17 +13,19 @@ if(isset($_POST["submit"])){
 
 
 
-    $duplicate = mysqli_query($conn,"SELECT * FROM car WHERE plate_id = '$plate_id' ");
 
+    $duplicate = mysqli_query($conn,"SELECT * FROM car WHERE plate_id = '$plate_id' ");
+  
     if(mysqli_num_rows($duplicate) > 0){
-       echo "<script> alert('Try another Email');</script>";
+     
     }
     else{
       //  car_id	plate_id	brand	model	type	manufacture	year	color	office_id	status	
         $query = "INSERT INTO car VALUES( ''  , '$plate_id' , '$brand' , '$model', '$type' , '$manufacture', '$year', '$color' ,  '$office_id' , '' )";
         
         mysqli_query($conn, $query);
-        echo "<script> alert('Registration Successful');</script>";
+
+       
     }
     
 }
