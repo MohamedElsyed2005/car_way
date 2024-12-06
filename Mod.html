@@ -26,33 +26,23 @@
 
         <div class="car">
             <h1>Add New Car</h1>
-            <form action="">
-
-                        <p>
-                            <div class="info_lines" >plate_id : </div>
-                                <input class="info_input" type="text" name="last_name" id="last_name" placeholder="Last Name" size="60" >
-                        </p>
-
-                        <p>
-                            <div class="info_lines" >Model :  </div>
-                                <input class="info_input" type="text" name="last_name" id="last_name" placeholder="Last Name" size="60" >
-                        </p>
+            
+            <form action="Mod.php"  method="post" id="register">
 
                         <p>
                             <div class="info_lines" >Brand : </div>
-                                <input class="info_input" type="text" name="last_name" id="last_name" placeholder="Last Name" size="60" >
+                                <input class="info_input" type="text" name="brand" id="brand" placeholder="Brand" size="60" >
                         </p>
+
 
                         <p>
-                            <div class="info_lines" >Color : </div>
-                                <input class="info_input" type="text" name="last_name" id="last_name" placeholder="Last Name" size="60" >
+                            <div class="info_lines" >Model :  </div>
+                                <input class="info_input" type="text" name="model" id="model" placeholder="Model" size="60" >
                         </p>
-
-                        
 
                         <p>
                             <div class="info_lines" >Type :  </div>
-                            <select name="TYPE"class="info_input" >
+                            <select name="TYPE"class="info_input" name="type" id="type"> 
                             <option selected>SUV
                             <option>SPORT
                             <option>G-Class
@@ -66,7 +56,32 @@
 
                         <p>
                             <div class="info_lines" >Country of manufacture : </div>
-                                <input class="info_input" type="text" name="last_name" id="last_name" placeholder="Last Name" size="60" >
+                                <input class="info_input" type="text" name="manufacture" id="manufacture" placeholder="Country of manufacture" size="60" >
+                        </p>
+
+
+                        <p>
+                            <div class="info_lines" >Color : </div>
+                                <input class="info_input" type="text" name="color" id="color" placeholder="Color" size="60" >
+                        </p>
+
+
+                        <p>
+                            <div class="info_lines" >Year of manufacture: </div>
+                                <input class="info_input" type="text" name="year" id="year" placeholder="Year of manufacture" size="60" >
+                        </p>
+
+
+
+                        <p>
+                            <div class="info_lines" >Plate_id : </div>
+                                <input class="info_input" type="text" name="plate_id" id="plate_id" placeholder="Plate_id" size="60" >
+                        </p>
+
+
+                        <p>
+                            <div class="info_lines" >Office_id : </div>
+                                <input class="info_input" type="text" name="office_id" id="Office_id" placeholder="Office_id" size="60" >
                         </p>
 
                          <input  class="buttonSubmit" type="submit" value="Add Car" >
