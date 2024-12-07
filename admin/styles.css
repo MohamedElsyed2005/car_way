@@ -1,0 +1,163 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    background-color: #f8f9fa;
+}
+
+h1, h2 {
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+}
+
+.sidebar h4 {
+    color: #ecf0f1;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: #ecf0f1;
+    padding: 15px 20px;
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    border-bottom: 1px solid #34495e;
+    transition: background 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #34495e;
+}
+
+.sidebar .active {
+    background-color: #2980b9;
+    font-weight: bold;
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Styles for Tables */
+.table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: center;
+}
+
+.table thead th {
+    background-color: #2980b9;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 12px;
+}
+
+/* Buttons */
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 15px;
+}
+
+button.btn-primary {
+    background-color: #2980b9;
+    color: white;
+}
+
+button.btn-primary:hover {
+    background-color: #1f618d;
+}
+
+/* Search Input Styling */
+input[type="text"] {
+    max-width: 300px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+}
+/* Card Styling */
+.card {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+form .form-control {
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #1f618d;
+}
+
+/* Section Titles */
+.card-header h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
