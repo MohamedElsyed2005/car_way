@@ -4,6 +4,15 @@ require '../config.php';
 $sql = "SELECT * FROM car";
 $result = $conn->query($sql);
 ?>
+<?php
+
+
+
+
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -116,6 +125,8 @@ $result = $conn->query($sql);
                             $statusClass = 'bg-danger';
                         }
 
+
+
                         echo "<tr>
                                 <td>" . $row['car_id'] . "</td>
                                 <td>" . $row['plate_id'] . "</td>
@@ -127,8 +138,13 @@ $result = $conn->query($sql);
                                 <td>" . $row['color'] . "</td>
                                 <td><span class='badge $statusClass'>" . $row['status'] . "</span></td>
                                 <td>
-                                    <button class='btn btn-warning btn-sm'>Edit</button>
-                                    <button class='btn btn-danger btn-sm'>Delete</button>
+                                <form action="delet_car.php" method="post">
+       
+
+                                    <button class='btn btn-warning btn-sm' name="">Edit</button>
+                                    <button class='btn btn-warning btn-sm'>Delete</button>
+                                    </form>
+
                                 </td>
                             </tr>";
                     }
@@ -136,7 +152,7 @@ $result = $conn->query($sql);
                     echo "<tr><td colspan='10'>No cars found</td></tr>";
                 }
 
-                $conn->close();
+                
                 ?>
             </tbody>
         </table>
@@ -149,5 +165,32 @@ $result = $conn->query($sql);
     <script src="car_mang.js"></script>
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+    <script>
+    function deleteCar(car_id) {
+        if (confirm("Are you sure you want to delete this car?")) {
+            fetch(`delet_car.php?id=${car_id}`, {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Show success or error message
+                location.reload(); // Refresh the page
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while deleting the car.");
+            });
+        }
+    }
+</script>
+
+    
+
+  
 </body>
 </html>
