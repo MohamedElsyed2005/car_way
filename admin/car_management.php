@@ -138,12 +138,13 @@ $result = $conn->query($sql);
                                 <td>" . $row['color'] . "</td>
                                 <td><span class='badge $statusClass'>" . $row['status'] . "</span></td>
                                 <td>
-                                <form action="delet_car.php" method="post">
-       
+                                <form action='delet_car.php' method='post'>
 
-                                    <button class='btn btn-warning btn-sm' name="">Edit</button>
-                                    <button class='btn btn-warning btn-sm'>Delete</button>
-                                    </form>
+                                    <button class='btn btn-warning btn-sm'>Edit</button>
+                                    <input type = 'hidden' name = 'car_id' value = '". $row['car_id'] ."'>
+                                    
+                                    <button class='btn btn-danger btn-sm'>Delete</button>
+                                </form>
 
                                 </td>
                             </tr>";
