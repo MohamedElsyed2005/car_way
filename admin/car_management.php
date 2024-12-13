@@ -4,18 +4,9 @@ require '../config.php';
 $sql = "SELECT * FROM car";
 $result = $conn->query($sql);
 ?>
-<?php
-
-
-
-
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +14,7 @@ $result = $conn->query($sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -38,10 +30,10 @@ $result = $conn->query($sql);
     <!-- Main Content -->
     <div class="content">
         <h1>Car Management</h1>
-        
+
         <!-- Button to trigger modal -->
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCarModal">Add New Car</button>
-        
+
         <!-- Modal to Add New Car -->
         <div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -51,8 +43,9 @@ $result = $conn->query($sql);
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Form to Add Car -->
-                        <form action="add_car.php" method="POST">
+                        <!-- Add/Edit Car Modal -->
+                        <form id="carForm" method="POST" action="add_car.php">
+                            <input type="hidden" id="car_id" name="car_id">
                             <div class="mb-3">
                                 <label for="plate_id" class="form-label">Plate ID</label>
                                 <input type="text" class="form-control" id="plate_id" name="plate_id" required>
@@ -84,13 +77,14 @@ $result = $conn->query($sql);
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-select" id="status" name="status" required>
-                                    <option value="active">active</option>
-                                    <option value="rented">rented</option>
-                                    <option value="out_of_service">out_of_service</option>
+                                    <option value="active">Active</option>
+                                    <option value="rented">Rented</option>
+                                    <option value="out_of_service">Out of Service</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Add Car</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -115,13 +109,13 @@ $result = $conn->query($sql);
             <tbody>
                 <?php
                 if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
+                    while ($row = $result->fetch_assoc()) {
                         $statusClass = '';
                         if ($row['status'] == 'rented') {
-                            $statusClass = 'bg-warning';  
+                            $statusClass = 'bg-warning';
                         } elseif ($row['status'] == 'active') {
-                            $statusClass = 'bg-success'; 
-                        } elseif($row['status'] == 'out_of_service') {
+                            $statusClass = 'bg-success';
+                        } elseif ($row['status'] == 'out_of_service') {
                             $statusClass = 'bg-danger';
                         }
 
@@ -138,14 +132,11 @@ $result = $conn->query($sql);
                                 <td>" . $row['color'] . "</td>
                                 <td><span class='badge $statusClass'>" . $row['status'] . "</span></td>
                                 <td>
-                                <form action='delet_car.php' method='post'>
-
-                                    <button class='btn btn-warning btn-sm'>Edit</button>
-                                    <input type = 'hidden' name = 'car_id' value = '". $row['car_id'] ."'>
-                                    
+                                    <button class='btn btn-warning btn-sm' onclick='editCar(" . json_encode($row) . ")'>Edit</button>
+                                    <form action='delet_car.php' method='post'>
+                                        <input type='hidden' name='car_id' value='" . $row['car_id'] . "'>
                                     <button class='btn btn-danger btn-sm'>Delete</button>
-                                </form>
-
+                                    </form>
                                 </td>
                             </tr>";
                     }
@@ -153,7 +144,7 @@ $result = $conn->query($sql);
                     echo "<tr><td colspan='10'>No cars found</td></tr>";
                 }
 
-                
+
                 ?>
             </tbody>
         </table>
@@ -166,32 +157,28 @@ $result = $conn->query($sql);
     <script src="car_mang.js"></script>
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-
     <script>
-    function deleteCar(car_id) {
-        if (confirm("Are you sure you want to delete this car?")) {
-            fetch(`delet_car.php?id=${car_id}`, {
-                method: 'GET',
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert(data); // Show success or error message
-                location.reload(); // Refresh the page
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("An error occurred while deleting the car.");
-            });
+        function editCar(car) {
+            
+            const modal = new bootstrap.Modal(document.getElementById('addCarModal'));
+            modal.show();
+
+
+            document.getElementById('car_id').value = car.car_id;
+            document.getElementById('plate_id').value = car.plate_id;
+            document.getElementById('brand').value = car.brand;
+            document.getElementById('model').value = car.model;
+            document.getElementById('type').value = car.type;
+            document.getElementById('manufacture').value = car.manufacture;
+            document.getElementById('year').value = car.year;
+            document.getElementById('color').value = car.color;
+            document.getElementById('status').value = car.status;
+
+
+            document.querySelector('#addCarModalLabel').textContent = 'Edit Car';
+            document.querySelector('form').action = 'edit_car.php';
         }
-    }
-</script>
-
-    
-
-  
+    </script>
 </body>
+
 </html>
