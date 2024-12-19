@@ -20,6 +20,7 @@ if(!empty($_SESSION["id"])){
         else{
             echo
             "<script> alert('wrong password');</script>";
+            header("Location: login.html");
         }
     }
     else{

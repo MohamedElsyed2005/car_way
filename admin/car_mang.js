@@ -18,4 +18,3 @@ searchInput.addEventListener('keyup', () => {
         row.style.display = match ? '' : 'none';
     });
 });
-

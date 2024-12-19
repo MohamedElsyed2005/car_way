@@ -118,9 +118,6 @@ $result = $conn->query($sql);
                         } elseif ($row['status'] == 'out_of_service') {
                             $statusClass = 'bg-danger';
                         }
-
-
-
                         echo "<tr>
                                 <td>" . $row['car_id'] . "</td>
                                 <td>" . $row['plate_id'] . "</td>
@@ -143,8 +140,6 @@ $result = $conn->query($sql);
                 } else {
                     echo "<tr><td colspan='10'>No cars found</td></tr>";
                 }
-
-
                 ?>
             </tbody>
         </table>
@@ -159,10 +154,9 @@ $result = $conn->query($sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function editCar(car) {
-            
+
             const modal = new bootstrap.Modal(document.getElementById('addCarModal'));
             modal.show();
-
 
             document.getElementById('car_id').value = car.car_id;
             document.getElementById('plate_id').value = car.plate_id;
@@ -173,7 +167,6 @@ $result = $conn->query($sql);
             document.getElementById('year').value = car.year;
             document.getElementById('color').value = car.color;
             document.getElementById('status').value = car.status;
-
 
             document.querySelector('#addCarModalLabel').textContent = 'Edit Car';
             document.querySelector('form').action = 'edit_car.php';
