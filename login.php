@@ -3,7 +3,7 @@
   require 'config.php';
 
 if(!empty($_SESSION["id"])){
-    header("Location: User.php");
+    header("Location: Home.php");
    }
    if(isset($_POST["submit"])){
     $email = $_POST["email"];
@@ -15,7 +15,7 @@ if(!empty($_SESSION["id"])){
         if($password == $row["password"]){
            $_SESSION["login"] = true;
            $_SESSION["id"] = $row["customer_id"];
-           header("Location: User.php");
+           header("Location: Home.php");
         }
         else{
             echo
