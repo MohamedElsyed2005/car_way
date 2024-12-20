@@ -25,7 +25,7 @@ searchInput.addEventListener('keyup', () => {
     const rows = document.querySelectorAll('.table tbody tr');
     rows.forEach((row) => {
         const cells = row.querySelectorAll('td');
-        const match = Array.from(cells).some((cell) => 
+        const match = Array.from(cells).some((cell) =>
             cell.textContent.toLowerCase().includes(filter)
         );
         row.style.display = match ? '' : 'none';
@@ -33,7 +33,7 @@ searchInput.addEventListener('keyup', () => {
 });
 
 // Change Password Form Handling
-document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+document.getElementById('changePasswordForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const currentPassword = document.getElementById('currentPassword').value;
     const newPassword = document.getElementById('newPassword').value;
@@ -47,7 +47,7 @@ document.getElementById('changePasswordForm').addEventListener('submit', functio
 });
 
 // Change Email Form Handling
-document.getElementById('changeEmailForm').addEventListener('submit', function(e) {
+document.getElementById('changeEmailForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const currentEmail = document.getElementById('currentEmail').value;
     const newEmail = document.getElementById('newEmail').value;
@@ -56,7 +56,7 @@ document.getElementById('changeEmailForm').addEventListener('submit', function(e
 });
 
 // System Settings Form Handling
-document.getElementById('systemSettingsForm').addEventListener('submit', function(e) {
+document.getElementById('systemSettingsForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const siteName = document.getElementById('siteName').value;
     const siteDescription = document.getElementById('siteDescription').value;

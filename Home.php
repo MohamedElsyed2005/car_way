@@ -24,7 +24,7 @@
                 </ul>
             </div>
             <div class="nav-button">
-            <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
+                <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
             </div>
         </nav>
         <!-- Logout Modal -->
@@ -82,7 +82,7 @@
         // Log out and redirect to login page
         function logout() {
             alert("You have been logged out successfully!");
-            window.location.href = "login.html";  // Redirect to login page
+            window.location.href = "login.html"; // Redirect to login page
         }
     </script>
 

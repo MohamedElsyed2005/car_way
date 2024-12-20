@@ -6,7 +6,8 @@ body {
     background-color: #f8f9fa;
 }
 
-h1, h2 {
+h1,
+h2 {
     color: #333333;
     margin-bottom: 20px;
 }
@@ -71,7 +72,8 @@ h1, h2 {
     border-collapse: collapse;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     padding: 15px;
     text-align: center;
 }
@@ -131,6 +133,7 @@ footer {
     left: 250px;
     width: calc(100% - 250px);
 }
+
 /* Card Styling */
 .card {
     margin-bottom: 20px;

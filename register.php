@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 
-if(isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $email = $_POST["email"];
@@ -10,12 +10,11 @@ if(isset($_POST["submit"])){
     $address = $_POST["Address"];
 
 
-    $duplicate = mysqli_query($conn,"SELECT * FROM customer WHERE Email = '$email'");
+    $duplicate = mysqli_query($conn, "SELECT * FROM customer WHERE Email = '$email'");
 
-    if(mysqli_num_rows($duplicate) > 0){
-       echo "<script> alert('Try another Email');</script>";
-    }
-    else{
+    if (mysqli_num_rows($duplicate) > 0) {
+        echo "<script> alert('Try another Email');</script>";
+    } else {
 
         $query = "INSERT INTO customer VALUES('', '$first_name', '$last_name','$email', '$phone_num', '$password', '$address')";
         mysqli_query($conn, $query);
@@ -23,4 +22,3 @@ if(isset($_POST["submit"])){
     }
     header("Location: login.html");
 }
-?>
