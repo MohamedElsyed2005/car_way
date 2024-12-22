@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Home.css">
     <title>Car Rental Service</title>
 </head>
 
@@ -21,6 +21,7 @@
                     <li><a href="#" class="link">Blog</a></li>
                     <li><a href="#" class="link">Services</a></li>
                     <li><a href="#" class="link">About</a></li>
+                    <li><a href="User.php" class="link">profile</a></li>
                 </ul>
             </div>
             <div class="nav-button">
