@@ -1,5 +1,5 @@
 <?php
-require '../config.php'; 
+require '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $plate_id = $_POST['plate_id'];
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$plate_id', '$brand', '$model', '$type', '$manufacture', '$year', '$color','1','$status')";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: car_management.php");  
+        header("Location: car_management.php");
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -23,4 +23,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
-?>
