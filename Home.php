@@ -17,11 +17,11 @@
             <img src="imgs/logo.png" class="nav-logo" alt="Logo">
             <div class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="Home.php" class="link active">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
                     <li><a href="#" class="link">Services</a></li>
                     <li><a href="#" class="link">About</a></li>
-                    <li><a href="User.php" class="link">profile</a></li>
+                    <li><a href="profile.php" class="link">profile</a></li>
                 </ul>
             </div>
             <div class="nav-button">

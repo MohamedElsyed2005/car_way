@@ -1,13 +1,16 @@
+<?php
+session_start();
+require 'config.php';
 
+if (!empty($_SESSION["id"])) {
+    $id = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT * FROM customer WHERE customer_id = $id");
+    $row = mysqli_fetch_assoc($result);
+} else {
+    header("Location: login.html");
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="Css/profile.css">
-    <link rel="stylesheet" href="Css/style.css">
-    <link rel="stylesheet" href="Css/all.min.css">
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Home.css">
+    <link rel="stylesheet" href="Css/profile.css">
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/all.min.css">
     <title>Car Rental Service</title>
 </head>
 
@@ -27,11 +33,11 @@
             <img src="imgs/logo.png" class="nav-logo" alt="Logo">
             <div class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="Home.php" class="link">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
                     <li><a href="#" class="link">Services</a></li>
                     <li><a href="#" class="link">About</a></li>
-                    <li><a href="User.php" class="link">profile</a></li>
+                    <li><a href="profile.php" class="link  active">profile</a></li>
                 </ul>
             </div>
             <div class="nav-button">
@@ -73,7 +79,7 @@
                             <div class="profile_contact">
 
                                 <div class="contact_account">
-                                    <h1 class="name_style"> Name </h1>
+                                    <h1 class="name_style"> <?php echo $row["first_name"]; ?> </h1>
                                     <h2 style="margin-left: 10px;"> Contact :</h2>
                                     <div class="Profile_buttons">
                                         <button class="edit_button">
@@ -130,7 +136,7 @@
                                 <div class="info_lines">First Name : <button class="edit_button" id="first_name_button"
                                         type="button"> edit </button></div>
                                 <input class="info_input" type="text" name="first_name" id="first_name"
-                                    placeholder="First Name" size="60" disabled>
+                                    placeholder="<?php echo $row["first_name"]; ?>" size="60" disabled>
                                 </p>
 
                                 <!-- Last Name Part -->
@@ -138,14 +144,14 @@
                                 <div class="info_lines">Last Name : <button class="edit_button" id="last_name_button"
                                         type="button"> edit </button></div>
                                 <input class="info_input" type="text" name="last_name" id="last_name"
-                                    placeholder="Last Name" size="60" disabled>
+                                    placeholder="<?php echo $row["last_name"]; ?>" size="60" disabled>
                                 </p>
 
                                 <!-- E-mail Part -->
                                 <p>
                                 <div class="info_lines">E-mail : <button class="edit_button" id="E-mail_button"
                                         type="button"> edit </button></div>
-                                <br> <input class="info_input" type="email" name="email" id="email" placeholder="E-mail"
+                                <br> <input class="info_input" type="email" name="email" id="email" placeholder="<?php echo $row["Email"]; ?>"
                                     size="60" disabled>
                                 </p>
 
@@ -154,7 +160,7 @@
                                 <div class="info_lines">Password : <button class="edit_button" id="password_button"
                                         type="button"> edit </button></div>
                                 <br> <input class="info_input" type="password" name="password" id="password"
-                                    placeholder="Password" size="60" disabled>
+                                    placeholder="<?php echo $row["password"]; ?>" size="60" disabled>
                                 </p>
 
                                 <!-- Location Part -->
