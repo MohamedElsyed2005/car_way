@@ -33,10 +33,6 @@ require 'config.php';
             </div>
         </nav>
         <div class="car-container">
-            <form method="GET">
-                <input type="text" name="search" placeholder="Search for a car..." class="search-box">
-                <button type="submit" class="search-btn">Search</button>
-            </form>
             <div class="car-list">
                 <?php
                 $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -44,9 +40,9 @@ require 'config.php';
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $_SESSION['plate_id']=$row['plate_id'];
+                        $_SESSION['plate_id'] = $row['plate_id'];
 
-                            echo "<div class='car-item'>
+                        echo "<div class='car-item'>
                             <h3>" . $row['plate_id'] . "</h3>
                             <p>Brand: " . $row['brand'] . "</p>
                             <p>Status: " . $row['status'] . "</p>
@@ -61,6 +57,24 @@ require 'config.php';
             </div>
         </div>
     </div>
-</body>
+    <script>
+        const searchInput = document.createElement('input');
+        searchInput.setAttribute('type', 'text');
+        searchInput.setAttribute('name', 'search');
+        searchInput.setAttribute('placeholder', 'Search Cars...');
+        searchInput.classList.add('search-box');
 
+        const contentDiv = document.querySelector('.car-container');
+        contentDiv.insertBefore(searchInput, contentDiv.querySelector('.car-list'));
+
+        searchInput.addEventListener('keyup', () => {
+            const filter = searchInput.value.toLowerCase();
+            const carItems = document.querySelectorAll('.car-item');
+            carItems.forEach((carItem) => {
+                const text = carItem.textContent.toLowerCase();
+                carItem.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
 </html>
