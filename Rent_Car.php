@@ -44,13 +44,15 @@ require 'config.php';
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<div class='car-item'>
-                        <h3>" . $row['plate_id'] . "</h3>
-                        <p>Brand: " . $row['brand'] . "</p>
-                        <p>Status: " . $row['status'] . "</p>
-                        <p>office name: " . $row['office_name'] . "</p>
-                        <button class='rent-btn'>Rent Now</button>
-                      </div>";
+                        $_SESSION['plate_id']=$row['plate_id'];
+
+                            echo "<div class='car-item'>
+                            <h3>" . $row['plate_id'] . "</h3>
+                            <p>Brand: " . $row['brand'] . "</p>
+                            <p>Status: " . $row['status'] . "</p>
+                            <p>office name: " . $row['office_name'] . "</p>
+                            <a href='payment.php' > <button class='rent-btn'>Rent Now</button> </a>
+                        </div>";
                     }
                 } else {
                     echo "<p>No cars available at the moment.</p>";
