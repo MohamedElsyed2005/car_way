@@ -1,3 +1,13 @@
+<?php
+require '../config.php';
+
+$sql =         "SELECT COUNT(*) AS total_cars,
+               (SELECT COUNT(*) FROM car WHERE status = 'active') AS total_active_cars
+               FROM car;";
+
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +23,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h4>Admin Panel</h4>
-        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="dashboard.php" class="active">Dashboard</a>
         <a href="user_management.html">User Management</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.html">Booking Management</a>
@@ -29,7 +39,7 @@
                 <div class="card text-white bg-primary mb-3">
                     <div class="card-body">
                         <h5>Total Cars</h5>
-                        <p>120</p>
+                        <p><?php echo $row["total_cars"];?></p>
                     </div>
                 </div>
             </div>
@@ -37,7 +47,7 @@
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5>Active Rentals</h5>
-                        <p>45</p>
+                        <p><?php echo $row["total_active_cars"];?></p>
                     </div>
                 </div>
             </div>

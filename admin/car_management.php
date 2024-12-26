@@ -19,7 +19,7 @@ $result = $conn->query($sql);
     <!-- Sidebar -->
     <div class="sidebar">
         <h4>Admin Panel</h4>
-        <a href="dashboard.html">Dashboard</a>
+        <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php" class="active">Car Management</a>
         <a href="user_management.html">User Management</a>
         <a href="booking_management.html">Booking Management</a>

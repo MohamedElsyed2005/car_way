@@ -20,8 +20,6 @@ if (!empty($_SESSION["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="Home.css">
-    <link rel="stylesheet" href="Css/profile.css">
-    <link rel="stylesheet" href="Css/style.css">
     <link rel="stylesheet" href="Css/all.min.css">
     <title>Car Rental Service</title>
 </head>
@@ -35,7 +33,7 @@ if (!empty($_SESSION["id"])) {
                 <ul>
                     <li><a href="Home.php" class="link">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
-                    <li><a href="#" class="link">Services</a></li>
+                    <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
                     <li><a href="#" class="link">About</a></li>
                     <li><a href="profile.php" class="link  active">profile</a></li>
                 </ul>
@@ -114,7 +112,7 @@ if (!empty($_SESSION["id"])) {
                                         style="margin-left: 50px; margin-bottom: 50px;" rows="6" cols="33"></textarea>
                                 </div>
 
-                                <a href="Courses.html"><img src="imgs/logo bar.svg" class="profile_logo" width="250"
+                                <a href="Courses.html"><img src="imgs\logo.png" class="profile_logo" width="250"
                                         height="250" id="#prof_logo"></a>
 
 
