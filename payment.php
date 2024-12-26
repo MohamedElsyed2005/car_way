@@ -3,7 +3,7 @@ session_start();
 require 'config.php';
 
 if (isset($_POST['plate_id'])) {
-    $_SESSION['plate_id'] = $_POST['plate_id']; // تخزين `plate_id` في الجلسة
+    $_SESSION['plate_id'] = $_POST['plate_id']; 
 }
 
 if (isset($_SESSION['plate_id'])) {
