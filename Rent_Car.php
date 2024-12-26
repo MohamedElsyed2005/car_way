@@ -24,7 +24,7 @@ require 'config.php';
                     <li><a href="Home.php" class="link">Home</a></li>
                     <li><a href="#" class="link">My Cars</a></li>
                     <li><a href="Rent_Car.php" class="link active">Rent Cars</a></li>
-                    <li><a href="#" class="link">About</a></li>
+                    <li><a href="About_us.html" class="link">About</a></li>
                     <li><a href="profile.php" class="link">profile</a></li>
                 </ul>
             </div>

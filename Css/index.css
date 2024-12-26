@@ -61,36 +61,6 @@ body {
     border-bottom: 2px solid #fff;
 }
 
-.nav-button .btn {
-    width: 130px;
-    height: 40px;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.4);
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .3s ease;
-}
-
-.btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-#registerBtn {
-    margin-left: 15px;
-}
-
-.btn.white-btn {
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.btn.btn.white-btn:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.nav-menu-btn {
-    display: none;
-}
 
 /* From Uiverse.io by gharsh11032000 */ 
 a{
@@ -108,8 +78,9 @@ a{
     background-color: inherit;
     border-radius: 100px;
     font-weight: 600;
-    color: greenyellow;
-    box-shadow: 0 0 0 2px greenyellow;
+    color: rgb(234, 4, 4);
+    width: 225px; /*width of btn*/
+    box-shadow: 0 0 0 2px rgb(234, 4, 4);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -118,7 +89,7 @@ a{
   .animated-button svg {
     position: absolute;
     width: 24px;
-    fill: greenyellow;
+    fill: rgb(234, 4, 4);
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
@@ -136,9 +107,9 @@ a{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background-color: greenyellow;
+    width: 800px;
+    height: 800px;
+    background-color: rgb(234, 4, 4);
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -162,11 +133,11 @@ a{
   }
   
   .animated-button:hover .arr-2 {
-    left: 16px;
+    left: 40px;
   }
   
   .animated-button:hover .text {
-    transform: translateX(12px);
+    transform: translateX(80px);
   }
   
   .animated-button:hover svg {
@@ -175,7 +146,7 @@ a{
   
   .animated-button:active {
     scale: 0.95;
-    box-shadow: 0 0 0 4px greenyellow;
+    box-shadow: 0 0 0 4px rgb(234, 4, 4);
   }
   
   .animated-button:hover .circle {
@@ -183,4 +154,24 @@ a{
     height: 220px;
     opacity: 1;
   }
+
+  .form-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 512px;
+    height: 420px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.index-container {
+  gap: 40px;
+  position: absolute;
+  left: 150px;
+  display: flex;
+  flex-direction: column;
+  transition: .5s ease-in-out;
+}
   
