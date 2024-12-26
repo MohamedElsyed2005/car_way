@@ -3,9 +3,8 @@ session_start();
 require 'config.php';
 
 if (isset($_POST['plate_id'])) {
-    $_SESSION['plate_id'] = $_POST['plate_id']; 
+    $_SESSION['plate_id'] = $_POST['plate_id'];
 }
-
 if (isset($_SESSION['plate_id'])) {
     $id = $_SESSION["plate_id"];
     $result = mysqli_query($conn, "SELECT * FROM car where plate_id= '$id' ");
@@ -114,25 +113,32 @@ if (isset($_SESSION['plate_id'])) {
         <div class="col2">
 
 
-            <div class="col2_1">
-                <div class="col2_1_1">Mercedes S500</div>
-                <div class="col_2_1_2">
 
-                </div>
-            </div>
-
-
-
-            <br>
-            <br>
-            <br><br>
             <div class="col2_2">
-                <div class="col2_2_1">Order Summary</div>
+                <div class="col2_2_1" style="font-size: 20px;">Order Summary</div>
                 <div class="col2_2_2">
 
-                    <form action="" method="">
+
+
+
+                    <form action="car_reservation.php" method="GET">
+                        <div class="info_lines_2" style="margin-top: 10px;">-Customer and car ID's : </div>
+                        <input class="info_input_2" type="number" name=customer_id value="<?php echo $_SESSION["id"]; ?>"  readonly >    
+                        <input class="info_input_2" type="number" name=car_id value="<?php echo $row["car_id"]; ?>" readonly >
+                        <hr>
+                        <input class="info_input_2" type="text" name=plate_id value="plate_id : <?php echo $row["plate_id"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=brand value="brand : <?php echo $row["brand"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=model value="model : <?php echo $row["model"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=type value="type : <?php echo $row["type"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=manufacture value="manufacture : <?php echo $row["manufacture"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=year value="year : <?php echo $row["year"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=color value="color : <?php echo $row["color"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=office_id value="office_id : <?php echo $row["office_id"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=price value="price : <?php echo $row["price"]; ?>" readonly >
+                        <input class="info_input_2" type="text" name=status value="status : <?php echo $row["status"]; ?>" readonly >
+                        <hr>
                         <div class="info_lines_2" style="margin-top: 10px;">-Number Of Days : </div>
-                        <br> <input class="info_input_2" type="number" name="id" placeholder=" 
+                        <input class="info_input_2" type="text" name="days" value=" 
                         
                         <?php
                         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['start']) && isset($_GET['end'])) {
@@ -146,50 +152,68 @@ if (isset($_SESSION['plate_id'])) {
                                 $endDate = new DateTime($end_date);
                                 $interval = $startDate->diff($endDate);
                                 $numberOfDays = $interval->days;
-
+                                if($startDate > $endDate){
+                                    echo "Un-Valid Date";
+                                }elseif($startDate< date("Y-m-d")){
+                                    echo "Un-Valid Date";
+                                }else{
                                 echo "Number of days: " . $numberOfDays;
+                                }
                             } else {
                                 echo "None";
                             }
-                        }else {
+                        } else {
                             echo "None";
                         }
                         ?>
                         
                         
-                        " disabled>
+                        " readonly >
 
-                       
+
                         <div class="info_lines_2">-TOTAL : </div>
-                        <br> <input class="info_input_2" type="text" name="id" placeholder=" 
-                        
+                        <input class="info_input_2" type="text" name="price" value=" 
+
                         <?php
                         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['start']) && isset($_GET['end'])) {
 
                             $start_date = $_GET['start'];
                             $end_date = $_GET['end'];
 
-                            $result = mysqli_query($conn,"SELECT price FROM car WHERE plate_id = '$row[plate_id]' ");
+                            $result = mysqli_query($conn, "SELECT price FROM car WHERE plate_id = '$row[plate_id]' ");
                             $price = mysqli_fetch_assoc($result);
 
                             if (!empty($start_date) && !empty($end_date)) {
-                                
+
                                 $startDate = new DateTime($start_date);
+                                $startDateformat = $startDate->format('Y-m-d');
                                 $endDate = new DateTime($end_date);
+                                $endDateformat = $endDate->format('Y-m-d');
                                 $interval = $startDate->diff($endDate);
                                 $numberOfDays = $interval->days;
                                 $maximum = $price['price'] *  $numberOfDays;
-                                echo "Total Price: "  . $maximum;
+                                if($startDate > $endDate){
+                                    echo "Un-Valid Date";
+                                }elseif($startDate< date("Y-m-d")){
+                                    echo "Un-Valid Date";
+                                }else{
+                                    echo "Total Price: "  . $maximum;
+                                }
                             } else {
                                 echo "None";
                             }
-                        }else {
+                        } else {
                             echo "None";
                         }
                         ?>
                         
-                        " disabled>
+                        " readonly >
+                        <input class="info_input_2" type="date" name="pick_up_date" value="<?php echo $startDateformat; ?>" readonly hidden >
+                        <input class="info_input_2" type="date" name="return_date" value="<?php echo $endDateformat; ?>" readonly hidden>
 
+                        <br>
+                        <br>
+                        <input class="about_button" type="submit" value="Rent-This-Car-Now">
                     </form>
 
 
@@ -199,31 +223,11 @@ if (isset($_SESSION['plate_id'])) {
             </div>
         </div>
 
-
-
-        <div class="col3">
-
-
-            <div class="col3_1">
-                <div class="col3_1_1">Color: <?php echo $row["color"]; ?> </div>
-                <div class="col3_1_2">Model: <?php echo $row["model"]; ?> </div>
-                <div class="col3_1_3">year: <?php echo $row["year"]; ?> </div>
-            </div>
-
-
-            <div class="col3_2">
-                <button class="about_button"> Complete the process </button>
-            </div>
-
-
-
-        </div>
+    </div>
 
 
 
     </div>
-
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

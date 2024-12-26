@@ -12,7 +12,7 @@ body {
 
 .payment {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة ثابتة */
+    grid-template-columns: repeat(2, 1fr); /* 3 أعمدة ثابتة */
     gap: 20px; /* مسافة بين الأعمدة */
     max-width: 1200px; /* أقصى عرض للصفحة */
     margin: 50px auto; /* مركز الصفحة */
@@ -22,7 +22,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* كل عمود */
 .col1, .col2, .col3 {
     background-color: #f9f9f9;
     padding: 15px;
@@ -31,7 +30,7 @@ body {
     height: auto;
 }
 
-/* تثبيت العناصر داخل الأعمدة */
+
 .col1_2, .col2_2, .col3_1 {
     margin-bottom: 20px;
 }
