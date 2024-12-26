@@ -11,10 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $manufacture = $_POST['manufacture'];
     $year = $_POST['year'];
     $color = $_POST['color'];
+    $price = $_POST['price'];
     $status = $_POST['status'];
 
-    $sql = "INSERT INTO car (plate_id, brand, model, type, manufacture, year, color, office_id, status)
-            VALUES ('$plate_id', '$brand', '$model', '$type', '$manufacture', '$year', '$color','$office_id','$status')";
+    $sql = "INSERT INTO car (plate_id, brand, model, type, manufacture, year, color, price, office_id, status)
+            VALUES ('$plate_id', '$brand', '$model', '$type', '$manufacture', '$year', '$color', '$price' ,'$office_id','$status')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: car_management.php");
