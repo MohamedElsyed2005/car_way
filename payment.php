@@ -1,12 +1,13 @@
 <?php
 session_start();
-
-echo $_SESSION['plate_id'];
 require 'config.php';
 
-if (!empty($_SESSION["plate_id"])) {
-    $id = $_SESSION["plate_id"];
+if (isset($_POST['plate_id'])) {
+    $_SESSION['plate_id'] = $_POST['plate_id']; // تخزين `plate_id` في الجلسة
+}
 
+if (isset($_SESSION['plate_id'])) {
+    $id = $_SESSION["plate_id"];
     $result = mysqli_query($conn, "SELECT * FROM car where plate_id= '$id' ");
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -14,8 +15,9 @@ if (!empty($_SESSION["plate_id"])) {
         echo "ffff";
     }
 } else {
-    header("Location: login.html");
+    echo "No car selected.";
 }
+
 
 ?>
 
@@ -84,18 +86,22 @@ if (!empty($_SESSION["plate_id"])) {
                 <div class="col1_2_2">PAYMENT DETAILS</div>
                 <div class="col1_2_3">
 
-                    <form action="" method="">
+                    <form action="" method="GET">
 
                         <div class="info_lines" style="margin-top: 10px;">-Id : </div>
                         <br> <input class="info_input" type="text" name="id" placeholder=" Id" disabled>
 
                         <div class="info_lines">-Beginning of rent : </div>
-                        <br> <input class="info_input" type="date" name="id" placeholder="Beginning">
+                        <br> <input class="info_input" type="date" name="start" placeholder="Beginning">
 
                         <div class="info_lines">-End of rent : </div>
-                        <br> <input class="info_input" type="date" name="id" placeholder="End">
+                        <br> <input class="info_input" type="date" name="end" placeholder="End">
+                        <button type="submit" class="rent-btn">submit</button>
                     </form>
-                  
+
+
+
+
 
                 </div>
             </div>
@@ -117,21 +123,76 @@ if (!empty($_SESSION["plate_id"])) {
 
 
 
-                <br>
-                <br>
-                <br><br>
+            <br>
+            <br>
+            <br><br>
             <div class="col2_2">
                 <div class="col2_2_1">Order Summary</div>
                 <div class="col2_2_2">
 
                     <form action="" method="">
                         <div class="info_lines_2" style="margin-top: 10px;">-Number Of Days : </div>
-                        <br> <input class="info_input_2" type="number" name="id" placeholder=" none" disabled>
+                        <br> <input class="info_input_2" type="number" name="id" placeholder=" 
+                        
+                        <?php
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['start']) && isset($_GET['end'])) {
 
+                            $start_date = $_GET['start'];
+                            $end_date = $_GET['end'];
+
+                            if (!empty($start_date) && !empty($end_date)) {
+
+                                $startDate = new DateTime($start_date);
+                                $endDate = new DateTime($end_date);
+                                $interval = $startDate->diff($endDate);
+                                $numberOfDays = $interval->days;
+
+                                echo "Number of days: " . $numberOfDays;
+                            } else {
+                                echo "None";
+                            }
+                        }else {
+                            echo "None";
+                        }
+                        ?>
+                        
+                        
+                        " disabled>
+
+                       
                         <div class="info_lines_2">-TOTAL : </div>
-                        <br> <input class="info_input_2" type="text" name="id" placeholder=" none" disabled>
+                        <br> <input class="info_input_2" type="text" name="id" placeholder=" 
+                        
+                        <?php
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['start']) && isset($_GET['end'])) {
+
+                            $start_date = $_GET['start'];
+                            $end_date = $_GET['end'];
+
+                            $result = mysqli_query($conn,"SELECT price FROM car WHERE plate_id = '$row[plate_id]' ");
+                            $price = mysqli_fetch_assoc($result);
+
+                            if (!empty($start_date) && !empty($end_date)) {
+                                
+                                $startDate = new DateTime($start_date);
+                                $endDate = new DateTime($end_date);
+                                $interval = $startDate->diff($endDate);
+                                $numberOfDays = $interval->days;
+                                $maximum = $price['price'] *  $numberOfDays;
+                                echo "Total Price: "  . $maximum;
+                            } else {
+                                echo "None";
+                            }
+                        }else {
+                            echo "None";
+                        }
+                        ?>
+                        
+                        " disabled>
 
                     </form>
+
+
 
                 </div>
 
