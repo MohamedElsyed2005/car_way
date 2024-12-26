@@ -1,18 +1,21 @@
 <?php
 session_start();
 require '../config.php';
+$office_id = $_SESSION["id"];
+$sql =         "SELECT *
+                FROM office_accounts
+                WHERE office_id = '$office_id';";
 
 if(!empty($_SESSION["id"])) {
     header("Location: dashboard.php");
 }
 if(isset($_POST["submit"])){
-    $office_id = $_POST["btn"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $result = mysqli_query($conn, "SELECT * FROM office_accounts WHERE office_id = '$office_id' AND Email = '$email'");
+    $result = mysqli_query($conn, "SELECT * FROM office_accounts WHERE Email = '$email'");
     $row = mysqli_fetch_assoc($result);
-    if (mysqli_num_rows($result) > 0) {
-        if ($password == $row["password"]) {
+    if (mysqli_num_rows($result) > 0 && $row["office_id"]==$office_id ) {
+        if ($password == $row["password"] && $row["office_id"]==$office_id ) {
             $_SESSION["login"] = true;
             $_SESSION["id"] = $row["office_id"];
             header("Location: dashboard.php");

@@ -218,14 +218,14 @@ header {
     flex-direction: row;
   }
   
-  .radio-wrapper {
+  /* .radio-wrapper {
     position: relative;
     height: 38px;
     width: 84px;
     margin: 3px;
-  }
+  } */
   
-  .radio-wrapper .input {
+  /* .radio-wrapper .input {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -233,9 +233,9 @@ header {
     cursor: pointer;
     z-index: 10;
     opacity: 0;
-  }
+  } */
   
-  .btn {
+  /* .btn {
     --primary: #f5434f;
     --shadow-primary: #631e29;
     --color: #ffffff;
@@ -345,19 +345,19 @@ header {
     text-align: center;
     transition: background 0.2s, 0.3s;
     font-family: "Orbitron", sans-serif; /* Orbitron font */
-  }
+  /* } */ 
   
-  .input:checked + .btn {
+  /* .input:checked + .btn {
     --primary: #161a25;
     --shadow-primary: #ffffff;
-  }
+  } */
   
-  .input:hover + .btn {
+  /* .input:hover + .btn {
     --primary: #cc133c;
     --font-size: 11px;
-  }
+  } */
   
-  .btn:after,
+  /* .btn:after,
   .btn:before {
     content: "";
     position: absolute;
@@ -367,18 +367,18 @@ header {
     bottom: 0;
     clip-path: var(--clip);
     z-index: -1;
-  }
+  } */
   
-  .btn:before {
+  /* .btn:before {
     background: var(--shadow-primary);
     transform: translate(var(--border), 0);
-  }
+  } */
   
-  .btn:after {
+  /* .btn:after {
     background: var(--primary);
-  }
+  } */
   
-  .btn__tag {
+  /* .btn__tag {
     position: absolute;
     padding: 1px 4px;
     letter-spacing: 1px;
@@ -388,9 +388,9 @@ header {
     font-weight: normal;
     color: hsl(0, 0%, 0%);
     font-size: var(--label-size);
-  }
+  } */
   
-  .btn__glitch {
+  /* .btn__glitch {
     position: absolute;
     top: calc(var(--border) * -1);
     left: calc(var(--border) * -1);
@@ -401,18 +401,18 @@ header {
     clip-path: var(--clip);
     animation: glitch 2s infinite;
     display: none;
-  }
+  } */
   
-  .input:hover + .btn .btn__glitch {
+  /* .input:hover + .btn .btn__glitch {
     display: block;
-  }
+  } */
   
-  .input:checked + .btn .btn__glitch {
+  /* .input:checked + .btn .btn__glitch {
     display: block;
     animation: glitch 5s infinite;
-  }
+  } */
   
-  .btn__glitch:before {
+  /* .btn__glitch:before {
     content: "";
     position: absolute;
     top: calc(var(--border) * 1);
@@ -422,9 +422,9 @@ header {
     clip-path: var(--clip);
     background: var(--primary);
     z-index: -1;
-  }
+  } */
   
-  @keyframes glitch {
+  /* @keyframes glitch {
     0% {
       clip-path: var(--clip-one);
     }
@@ -502,9 +502,9 @@ header {
     100% {
       clip-path: var(--clip-four);
     }
-  }
+  } */
   
-  .number {
+  /* .number {
     background: var(--shadow-primary);
     color: #323232;
     font-size: 5.5px;
@@ -516,7 +516,7 @@ header {
     top: 0;
     left: 81%;
     line-height: 6.2px;
-  }
+  } */
   
 
 

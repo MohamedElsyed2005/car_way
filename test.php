@@ -55,48 +55,72 @@ require 'config.php';
                 <div class="car-list">
                     <?php
 
-                    $sql = "SELECT car_id FROM car_reservation WHERE customer_id = ?";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("i", $_SESSION['id']);  
-                    $stmt->execute();
-                    $result = $stmt->get_result();
+                    $sql = "SELECT Distinct car_id FROM car_reservation WHERE return_date>CURDATE() AND customer_id = " . intval($_SESSION['id']);
+                    $result = $conn->query($sql);
+
+
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $sql = "SELECT * FROM car WHERE car_id = ?";
-                            $stmt = $conn->prepare($sql);
-                            $stmt->bind_param("i", $row["car_id"]); 
-                            $stmt->execute();
-                            $result = $stmt->get_result();
-  
-                                while ($row = $result->fetch_assoc()) {
 
-                                    echo "<div class='car-item'>
-                                <h3>" . $row['brand'] .  "</h3>
-                                <p>Brand: ". $row['plate_id'] . "</p>
-                                <p>Colot: " . $row['color'] . "</p>
-                                <p>Tyoe: " . $row['type'] . "</p>
-                                <p>Year: " . $row['year'] . "</p>
-                                <p>Price: " . $row['price'] . "</p>
-                                <p>manufacture: " . $row['manufacture'] . "</p>
-                                <p>Status: " . $row['status'] . "</p>
-                                <form method='POST' action='payment.php'>
-                                    <input type='hidden' name='plate_id' value='" . $row['plate_id'] . "'>
-                                    <button type='submit' class='rent-btn'>Cancel_Rent</button>
-                                </form>
+                            echo $row['car_id'];
+                            $sql2 = $sql2 = "SELECT * FROM car WHERE car_id = " . intval($row["car_id"]);
+                            $result2 = $conn->query($sql2);
+                            while ($row2 = $result2->fetch_assoc()) {
+
+                                echo "<div class='car-item'>
+                                <h3>" . $row2['brand'] .  "</h3>
+                                <p>Brand: " . $row2['plate_id'] . "</p>
+                                <p>Colot: " . $row2['color'] . "</p>
+                                <p>Tyoe: " . $row2['type'] . "</p>
+                                <p>Year: " . $row2['year'] . "</p>
+                                <p>Price: " . $row2['price'] . "</p>
+                                <p>manufacture: " . $row2['manufacture'] . "</p>
+                                <p>Status: " . $row2['status'] . "</p>
+                                    <input type='hidden' name='plate_id' value='" . $row2['plate_id'] . "'>
+                                    <button type='submit' class='rent-btn' id='cancel' onclick='showLogoutModal()' >Cancel_Rent</button>
                             </div>";
-                                }
+                            }
                         }
-                        }
+                    }
                     ?>
                 </div>
             </div>
 
-
+            <div id="logoutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Are you sure you want to log out?</h2>
+                    <p>If you log out, you will need to log in again to continue using the service.</p>
+                    <button class="btn modal-btn" onclick="closeModal()">Cancel</button>
+                    <button class="btn modal-btn" onclick="okay(' . json_encode($row) . ') ">Okay</button>
+                </div>
+            </div>
 
 
         </div>
         <!--End page -->
-        <script src="JS/Profile.js"></script>
+        <script>
+            function showLogoutModal() {
+                document.getElementById("logoutModal").style.display = "block";
+            }
+
+            // Close modal
+            function closeModal() {
+                document.getElementById("logoutModal").style.display = "none";
+            }
+
+            function okay(car) {
+                
+                const modal = new bootstrap.Modal(document.getElementById("logoutModal"));
+                    modal.show();
+                if (confirm("Are you sure you want to log out?")) {
+
+                    document.querySelector('#addCarModalLabel').textContent = 'canel_rent';
+                    document.querySelector('form').action = 'cancel_rent.php';
+                }
+
+            }
+        </script>
 
 </body>
 
