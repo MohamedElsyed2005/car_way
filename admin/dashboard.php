@@ -34,6 +34,19 @@ $_SESSION["officename"] = $row["office_name"];
         <a href="booking_management.html">Booking Management</a>
         <a href="reports.html">Reports</a>
         <a href="settings.html">Settings</a>
+        <div class="nav-button">
+            <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
+        </div>
+        <!-- Logout Modal -->
+        <div id="logoutModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Are you sure you want to log out?</h2>
+                <p>If you log out, you will need to log in again to continue using the service.</p>
+                <button class="btn modal-btn" onclick="logout()">Yes, Log me out</button>
+                <button class="btn modal-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content -->
@@ -74,9 +87,7 @@ $_SESSION["officename"] = $row["office_name"];
             </div>
         </div>
     </div>
-
-
-
+    <script src="../JS/logout.js"></script>
     <!-- Footer -->
     <footer>
         © 2024 Car Rental System -

@@ -81,8 +81,10 @@
 
         // Log out and redirect to login page
         function logout() {
-            alert("You have been logged out successfully!");
-            window.location.href = "login.html"; // Redirect to login page
+            if (confirm("Are you sure you want to log out?")) {
+                window.location.href = "log_out.php"; // Redirect to the PHP logout script
+            }
+
         }
     </script>
 

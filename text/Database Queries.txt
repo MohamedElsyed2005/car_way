@@ -14,6 +14,7 @@ CREATE TABLE car(
     year INT NOT NULL,
     color VARCHAR(255) NOT NULL,
     office_id INT NOT NULL,
+    price decimal NOT NULL,
     status ENUM ('active', 'out_of_service', 'rented') DEFAULT 'active',
     FOREIGN KEY (office_id) REFERENCES office(office_id)
 );
@@ -62,3 +63,5 @@ Admin Accounts:
 INSERT INTO office_accounts VALUES ('1','admin1@Carway.com','admin1');
 INSERT INTO office_accounts VALUES ('2','admin2@Carway.com','admin2');
 INSERT INTO office_accounts VALUES ('3','admin3@Carway.com','admin3');
+
+ALTER TABLE car ADD COLUMN price decimal NOT NULL
