@@ -19,8 +19,8 @@
 }
 
 .car-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
@@ -28,7 +28,7 @@
     border: 1px solid #444; 
     background-color: #222; 
     padding: 15px;
-    width: 30%;
+    width: 80%;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); 
     border-radius: 10px; 

@@ -3,7 +3,7 @@ const searchInput = document.createElement('input');
 searchInput.setAttribute('type', 'text');
 searchInput.setAttribute('placeholder', 'Search Cars...');
 searchInput.classList.add('form-control', 'mb-3');
-
+// <input type = "text" placeholder = "Search Cars..." class="form-control mb-3">
 const contentDiv = document.querySelector('.content');
 contentDiv.insertBefore(searchInput, contentDiv.querySelector('table'));
 

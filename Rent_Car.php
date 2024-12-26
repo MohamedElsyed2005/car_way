@@ -33,10 +33,6 @@ require 'config.php';
             </div>
         </nav>
         <div class="car-container">
-            <form method="GET">
-                <input type="text" name="search" placeholder="Search for a car..." class="search-box">
-                <button type="submit" class="search-btn">Search</button>
-            </form>
             <div class="car-list">
                 <?php
                 $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -64,6 +60,24 @@ require 'config.php';
             </div>
         </div>
     </div>
-</body>
+    <script>
+        const searchInput = document.createElement('input');
+        searchInput.setAttribute('type', 'text');
+        searchInput.setAttribute('name', 'search');
+        searchInput.setAttribute('placeholder', 'Search Cars...');
+        searchInput.classList.add('search-box');
 
+        const contentDiv = document.querySelector('.car-container');
+        contentDiv.insertBefore(searchInput, contentDiv.querySelector('.car-list'));
+
+        searchInput.addEventListener('keyup', () => {
+            const filter = searchInput.value.toLowerCase();
+            const carItems = document.querySelectorAll('.car-item');
+            carItems.forEach((carItem) => {
+                const text = carItem.textContent.toLowerCase();
+                carItem.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
 </html>
