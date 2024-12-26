@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +18,7 @@
                 <ul>
                     <li><a href="Home.php" class="link active">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
-                    <li><a href="#" class="link">Services</a></li>
+                    <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
                     <li><a href="#" class="link">About</a></li>
                     <li><a href="profile.php" class="link">profile</a></li>
                 </ul>

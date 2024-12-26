@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Css/index.css">
     <title>Home</title>
 </head>
+
 <body>
     <div class="wrapper">
         <nav class="nav">
             <img src="imgs/logo.png" class="nav-logo">
             <div class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="#" class="link active">Home</a></li>
+                    <li><a href="index.html" class="link active">Home</a></li>
                     <li><a href="#" class="link">Blog</a></li>
-                    <li><a href="#" class="link">Services</a></li>
+                    <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
                     <li><a href="#" class="link">About</a></li>
+                    <li><a href="profile.php" class="link">profile</a></li>
                 </ul>
             </div>
-            <div class="nav-button">
-                <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
-                <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
-            </div>
-            <div class="nav-menu-btn">
-                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
-            </div>
         </nav>
+        <a href="admin/car_management.php">
+            <button class="animated-button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+                </svg>
+                <span class="text">Admin</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+                </svg>
+            </button>
+        </a>
 
- <form action="" class="container">
-        <input class="input-btn" type="radio" id="valueIs-2" name="valueIs-radio" value="valueIs-2">
-        <label class="neon-btn" for="valueIs-2">
-            <span class="span"></span>
-            <span class="txt">Office</span>
-        </label>
-        <input class="input-btn" type="radio" id="valueIs-2" name="valueIs-radio" value="valueIs-2">
-        <label class="neon-btn" for="valueIs-2">
-            <span class="span"></span>
-            <span class="txt">User</span>
-        </label>
-    </form>
+        <a href="login.html"> 
+            <button class="animated-button">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+                </svg>
+                <span class="text">Customer</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                    </path>
+                </svg>
+            </button>
+        </a>
+
+
 </body>
+
 </html>
