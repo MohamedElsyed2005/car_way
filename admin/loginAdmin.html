@@ -1,70 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="loginAdmin.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="loginAdmin.css">
+  <title>Document</title>
 </head>
+
 <body>
-    <body>
-        <div class="wrapper">
-            <nav class="nav">
-                <img src="../imgs/logo.png" class="nav-logo">
-                <div class="nav-menu" id="navMenu">
-                    <ul>
-                        <li><a href="../index.html" class="link">Home</a></li>
-                        <li><a href="../login.html" class="link">User</a></li>
-                        <li><a href="loginAdmin.html" class="link active">Admin</a></li>
-                        <li><a href="../About_us.html" class="link">About</a></li>
-                    </ul>
-                </div>
-            </nav>
 
-            <div class="form-box">
+  <body>
+    <div class="wrapper">
+      <nav class="nav">
+        <img src="../imgs/logo.png" class="nav-logo">
+        <div class="nav-menu" id="navMenu">
+          <ul>
+            <li><a href="../index.html" class="link">Home</a></li>
+            <li><a href="../login.html" class="link">User</a></li>
+            <li><a href="loginAdmin.html" class="link active">Admin</a></li>
+            <li><a href="../About_us.html" class="link">About</a></li>
+          </ul>
+        </div>
+      </nav>
 
-<div class="container">
-  <div class="radio-wrapper">
-    <input type="radio" id="value-1" name="btn" class="input" />
-    <div class="btn">
-      <span aria-hidden="">_</span>1
-      <span aria-hidden="" class="btn__glitch">1</span>
-      <label class="number">r1</label>
-    </div>
-  </div>
-  <div class="radio-wrapper">
-    <input type="radio" checked="true" id="value-2" name="btn" class="input" />
-    <div class="btn">
-      2<span aria-hidden="">_</span>
-      <span aria-hidden="" class="btn__glitch">2</span>
-      <label class="number">r2</label>
-    </div>
-  </div>
-  <div class="radio-wrapper">
-    <input type="radio" id="value-3" name="btn" class="input" />
-    <div class="btn">
-      3<span aria-hidden="">_</span>
-      <span aria-hidden="" class="btn__glitch">3</span>
-      <label class="number">r3</label>
-    </div>
-  </div>
-</div>
 
-                <div class="login-container" id="login">
-                    <div class="top">
-                        <header>Login</header>
-            <form action="login.php" method="post">
-                <div class="input-box">
-                    <input type="text" class="input-field"  name="email" placeholder="Email" required />
-                    <i class="bx bx-user"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" class="input-field" name="password" placeholder="Password" required/>
-                    <i class="bx bx-lock-alt"></i>
-                </div>
-                <div class="input-box">
-                    <button class="submit" type="submit" name="submit">Sign in</button>  
-                </div>
-</body>
+      <form action="loginAdmin.php" method="post">
+        <div class="form-box">
+          <div class="container">
+            <div class="radio-wrapper">
+              <input type="radio" id="value-1" name="btn" class="input" value="1"/>
+              <div class="btn">
+                <span aria-hidden="">_</span>1
+                <span aria-hidden="" class="btn__glitch">1</span>
+                <label class="number">r1</label>
+              </div>
+            </div>
+            <div class="radio-wrapper">
+              <input type="radio" checked="true" id="value-2" name="btn" class="input" value="2"/>
+              <div class="btn">
+                2<span aria-hidden="">_</span>
+                <span aria-hidden="" class="btn__glitch">2</span>
+                <label class="number">r2</label>
+              </div>
+            </div>
+            <div class="radio-wrapper">
+              <input type="radio" id="value-3" name="btn" class="input" value="3"/>
+              <div class="btn">
+                3<span aria-hidden="">_</span>
+                <span aria-hidden="" class="btn__glitch">3</span>
+                <label class="number">r3</label>
+              </div>
+            </div>
+          </div>
+          <div class="login-container" id="login">
+            <div class="top">
+              <header>Login</header>
+              <div class="input-box">
+                <input type="text" class="input-field" name="email" placeholder="Email" required />
+                <i class="bx bx-user"></i>
+              </div>
+              <div class="input-box">
+                <input type="password" class="input-field" name="password" placeholder="Password" required />
+                <i class="bx bx-lock-alt"></i>
+              </div>
+              <div class="input-box">
+                <button class="submit" type="submit" name="submit">Log in</button>
+              </div>
+      </form>
+  </body>
+
 </html>

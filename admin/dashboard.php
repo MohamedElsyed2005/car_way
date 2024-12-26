@@ -1,12 +1,17 @@
 <?php
+session_start();
 require '../config.php';
 
-$sql =         "SELECT COUNT(*) AS total_cars,
-               (SELECT COUNT(*) FROM car WHERE status = 'active') AS total_active_cars
-               FROM car;";
+$office_id = $_SESSION["id"];
+$sql =         "SELECT COUNT(car.car_id) AS total_cars, office.office_name AS office_name, (SELECT COUNT(*) FROM car WHERE car.status = 'active' AND car.office_id = '$office_id') AS total_active_cars
+                FROM office
+                LEFT JOIN car ON car.office_id = office.office_id
+                WHERE office.office_id = '$office_id';";
 
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
+
+$_SESSION["officename"] = $row["office_name"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +27,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4>Admin Panel</h4>
+        <h4><?php echo $row["office_name"]; ?></h4>
         <a href="dashboard.php" class="active">Dashboard</a>
         <a href="user_management.html">User Management</a>
         <a href="car_management.php">Car Management</a>
@@ -39,7 +44,7 @@ $row = mysqli_fetch_assoc($result);
                 <div class="card text-white bg-primary mb-3">
                     <div class="card-body">
                         <h5>Total Cars</h5>
-                        <p><?php echo $row["total_cars"];?></p>
+                        <p><?php echo $row["total_cars"]; ?></p>
                     </div>
                 </div>
             </div>
@@ -47,7 +52,7 @@ $row = mysqli_fetch_assoc($result);
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5>Active Rentals</h5>
-                        <p><?php echo $row["total_active_cars"];?></p>
+                        <p><?php echo $row["total_active_cars"]; ?></p>
                     </div>
                 </div>
             </div>

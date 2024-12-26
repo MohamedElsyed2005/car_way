@@ -46,3 +46,19 @@ CREATE TABLE payment(
     FOREIGN KEY (reservation_id) REFERENCES car_reservation(reservation_id)
 );
 
+CREATE TABLE office_accounts(
+    office_id INT,
+    Email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    FOREIGN KEY(office_id) REFERENCES office(office_id)
+);
+
+office:
+INSERT INTO office VALUES ('1','Car Way_newYork','new york');
+INSERT INTO office VALUES ('2','Car Way_Egypt','Egypt');
+INSERT INTO office VALUES ('3','Car Way_London','London');
+
+Admin Accounts:
+INSERT INTO office_accounts VALUES ('1','admin1@Carway.com','admin1');
+INSERT INTO office_accounts VALUES ('2','admin2@Carway.com','admin2');
+INSERT INTO office_accounts VALUES ('3','admin3@Carway.com','admin3');

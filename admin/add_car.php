@@ -1,5 +1,7 @@
 <?php
+session_start();
 require '../config.php';
+$office_id = $_SESSION["id"];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $plate_id = $_POST['plate_id'];
@@ -12,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = $_POST['status'];
 
     $sql = "INSERT INTO car (plate_id, brand, model, type, manufacture, year, color, office_id, status)
-            VALUES ('$plate_id', '$brand', '$model', '$type', '$manufacture', '$year', '$color','1','$status')";
+            VALUES ('$plate_id', '$brand', '$model', '$type', '$manufacture', '$year', '$color','$office_id','$status')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: car_management.php");

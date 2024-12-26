@@ -1,8 +1,15 @@
 <?php
+session_start();
 require '../config.php';
 
-$sql = "SELECT * FROM car";
-$result = $conn->query($sql);
+$office_id = $_SESSION["id"];
+$sql =         "SELECT*
+                FROM office
+                LEFT JOIN car ON car.office_id = office.office_id
+                WHERE office.office_id = '$office_id';";
+
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +25,7 @@ $result = $conn->query($sql);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4>Admin Panel</h4>
+        <h4><?php echo $row["office_name"];?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php" class="active">Car Management</a>
         <a href="user_management.html">User Management</a>

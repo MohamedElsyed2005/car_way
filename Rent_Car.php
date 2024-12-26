@@ -22,7 +22,7 @@ require 'config.php';
             <div class="nav-menu" id="navMenu">
                 <ul>
                     <li><a href="Home.php" class="link">Home</a></li>
-                    <li><a href="#" class="link">Blog</a></li>
+                    <li><a href="#" class="link">My Cars</a></li>
                     <li><a href="Rent_Car.php" class="link active">Rent Cars</a></li>
                     <li><a href="#" class="link">About</a></li>
                     <li><a href="profile.php" class="link">profile</a></li>
