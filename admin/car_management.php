@@ -82,6 +82,10 @@ $row = mysqli_fetch_assoc($result);
                                 <input type="text" class="form-control" id="color" name="color" required>
                             </div>
                             <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="price" name="price" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-select" id="status" name="status" required>
                                     <option value="active">Active</option>
@@ -109,6 +113,7 @@ $row = mysqli_fetch_assoc($result);
                     <th>Manufacture</th>
                     <th>Year</th>
                     <th>Color</th>
+                    <th>price</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -134,6 +139,7 @@ $row = mysqli_fetch_assoc($result);
                                 <td>" . $row['manufacture'] . "</td>
                                 <td>" . $row['year'] . "</td>
                                 <td>" . $row['color'] . "</td>
+                                <td>" . $row['price'] . "</td>
                                 <td><span class='badge $statusClass'>" . $row['status'] . "</span></td>
                                 <td>
                                     <button class='btn btn-warning btn-sm' onclick='editCar(" . json_encode($row) . ")'>Edit</button>
@@ -173,6 +179,7 @@ $row = mysqli_fetch_assoc($result);
             document.getElementById('manufacture').value = car.manufacture;
             document.getElementById('year').value = car.year;
             document.getElementById('color').value = car.color;
+            document.getElementById('price').value = car.price;
             document.getElementById('status').value = car.status;
 
             document.querySelector('#addCarModalLabel').textContent = 'Edit Car';

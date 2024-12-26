@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $manufacture = $_POST['manufacture'];
     $year = $_POST['year'];
     $color = $_POST['color'];
+    $price = $_POST['price'];
     $status = $_POST['status'];
 
     $sql = "UPDATE car SET 
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             manufacture = '$manufacture', 
             year = $year, 
             color = '$color', 
+            price = '$price', 
             status = '$status' 
             WHERE car_id = $car_id";
 
