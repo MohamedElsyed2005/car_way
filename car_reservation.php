@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
        // echo "Car ID: " . $return_date;
     }
 
-    $sql = "INSERT INTO car_reservation VALUES('', '1', '1','$reserve_date', '$pick_up_date', '$return_date')";
+    $sql = "INSERT INTO car_reservation VALUES('', ' $car_id', '$customer_id','$reserve_date', '$pick_up_date', '$return_date')";
     $result = $conn->query($sql);
     if ($result) {
        // echo "done";

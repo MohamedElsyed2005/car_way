@@ -13,6 +13,7 @@ $row = mysqli_fetch_assoc($result);
 
 $_SESSION["officename"] = $row["office_name"];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
