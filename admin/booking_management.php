@@ -1,3 +1,12 @@
+<?php
+session_start();
+require '../config.php';
+$office_id = $_SESSION["id"];
+$sql =  "
+
+";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,33 +40,14 @@
                     <th>Customer</th>
                     <th>Car</th>
                     <th>Booking Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>pickUp Date</th>
+                    <th>return Date</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Ahmed Ali</td>
-                    <td>Toyota Camry</td>
-                    <td>2024-12-01</td>
-                    <td><span class="badge bg-success">Completed</span></td>
-                    <td>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Cancel</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Sara Hassan</td>
-                    <td>Tesla Model S</td>
-                    <td>2024-12-05</td>
-                    <td><span class="badge bg-warning">Pending</span></td>
-                    <td>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Cancel</button>
-                    </td>
-                </tr>
+               <?php
+               
+               ?>
             </tbody>
         </table>
     </div>
