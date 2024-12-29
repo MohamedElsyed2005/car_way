@@ -2,10 +2,9 @@
 session_start();
 require '../config.php';
 $office_id = $_SESSION["id"];
-$sql =  "
-
-";
-
+$sql =  "SELECT * FROM car_reservation WHERE car_id IN(SELECT car_id FROM car WHERE office_id = '$office_id')";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +24,7 @@ $sql =  "
         <a href="dashboard.php">Dashboard</a>
         <a href="user_management.html">User Management</a>
         <a href="car_management.php">Car Management</a>
-        <a href="booking_management.html" class="active">Booking Management</a>
+        <a href="booking_management.php" class="active">Booking Management</a>
         <a href="reports.html">Reports</a>
         <a href="settings.html">Settings</a>
     </div>
@@ -45,9 +44,23 @@ $sql =  "
                 </tr>
             </thead>
             <tbody>
-               <?php
-               
-               ?>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $statusClass = '';
+                        echo "<tr>
+                            <td>" . $row['reservation_id'] . "</td>
+                            <td>" . $row['customer_id'] . "</td>
+                            <td>" . $row['car_id'] . "</td>
+                            <td>" . $row['reserve_date'] . "</td>
+                            <td>" . $row['pick_up_date'] . "</td>
+                            <td>" . $row['return_date'] . "</td>
+                            </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='10'>No cars found</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
