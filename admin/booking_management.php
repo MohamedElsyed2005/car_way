@@ -2,7 +2,11 @@
 session_start();
 require '../config.php';
 $office_id = $_SESSION["id"];
-$sql =  "SELECT * FROM car_reservation WHERE car_id IN(SELECT car_id FROM car WHERE office_id = '$office_id')";
+$sql =  "SELECT *
+         FROM car_reservation
+         LEFT JOIN car ON car.car_id = car_reservation.car_id
+         RIGHT JOIN office ON car.office_id = office.office_id
+         WHERE car.office_id = '$office_id';";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 ?>
@@ -20,9 +24,8 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4>Admin Panel</h4>
+        <h4><?php echo $row["office_name"];?></h4>
         <a href="dashboard.php">Dashboard</a>
-        <a href="user_management.html">User Management</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php" class="active">Booking Management</a>
         <a href="reports.html">Reports</a>
@@ -47,7 +50,6 @@ $row = mysqli_fetch_assoc($result);
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $statusClass = '';
                         echo "<tr>
                             <td>" . $row['reservation_id'] . "</td>
                             <td>" . $row['customer_id'] . "</td>

@@ -28,7 +28,6 @@ $row = mysqli_fetch_assoc($result);
         <h4><?php echo $row["office_name"];?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php" class="active">Car Management</a>
-        <a href="user_management.html">User Management</a>
         <a href="booking_management.php">Booking Management</a>
         <a href="reports.html">Reports</a>
         <a href="settings.html">Settings</a>
