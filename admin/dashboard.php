@@ -72,8 +72,16 @@ $_SESSION["officename"] = $row["office_name"];
             <div class="col-md-3">
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
-                        <h5>Pending Bookings</h5>
-                        <p>15</p>
+                        <h5>Total Bookings</h5>
+                        <p><?php
+                            $sql = "SELECT COUNT(*) AS Booking_number
+                                    FROM car_reservation
+                                    LEFT JOIN car ON car.car_id = car_reservation.car_id
+                                    WHERE car.office_id = '$office_id'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            echo $row["Booking_number"];
+                        ?></p>
                     </div>
                 </div>
             </div>
@@ -81,7 +89,15 @@ $_SESSION["officename"] = $row["office_name"];
                 <div class="card text-white bg-danger mb-3">
                     <div class="card-body">
                         <h5>Total Earn</h5>
-                        <p>36630$</p>
+                        <p><?php 
+                             $sql = "SELECT SUM(cash) AS total
+                                     FROM car_reservation as cr,payment as p, car as c
+                                     WHERE cr.reservation_id = p.reservation_id AND cr.car_id = c.car_id AND c.office_id = '$office_id'
+                                     GROUP BY c.office_id ";
+                             $result = mysqli_query($conn, $sql);
+                             $row = mysqli_fetch_assoc($result);
+                             echo $row["total"];
+                        ?>$</p>
                     </div>
                 </div>
             </div>
