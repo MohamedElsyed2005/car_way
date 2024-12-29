@@ -32,8 +32,6 @@ $_SESSION["officename"] = $row["office_name"];
         <a href="dashboard.php" class="active">Dashboard</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php">Booking Management</a>
-        <a href="reports.html">Reports</a>
-        <a href="settings.html">Settings</a>
         <div class="nav-button">
             <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
         </div>
@@ -96,7 +94,10 @@ $_SESSION["officename"] = $row["office_name"];
                                      GROUP BY c.office_id ";
                              $result = mysqli_query($conn, $sql);
                              $row = mysqli_fetch_assoc($result);
-                             echo $row["total"];
+                             if (mysqli_num_rows($result) > 0){
+                                echo $row["total"];
+                             }
+                                echo 0;     
                         ?>$</p>
                     </div>
                 </div>

@@ -27,8 +27,6 @@ $row = mysqli_fetch_assoc($result);
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php" class="active">Booking Management</a>
-        <a href="reports.html">Reports</a>
-        <a href="settings.html">Settings</a>
     </div>
 
     <!-- Main Content -->
