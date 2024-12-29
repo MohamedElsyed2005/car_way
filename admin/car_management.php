@@ -25,7 +25,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4><?php echo $row["office_name"];?></h4>
+        <h4><?php echo $_SESSION["officename"];?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php" class="active">Car Management</a>
         <a href="booking_management.php">Booking Management</a>

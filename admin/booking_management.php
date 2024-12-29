@@ -5,7 +5,6 @@ $office_id = $_SESSION["id"];
 $sql =  "SELECT *
          FROM car_reservation
          LEFT JOIN car ON car.car_id = car_reservation.car_id
-         RIGHT JOIN office ON car.office_id = office.office_id
          WHERE car.office_id = '$office_id';";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -24,7 +23,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4><?php echo $row["office_name"];?></h4>
+        <h4><?php echo $_SESSION["officename"];?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php" class="active">Booking Management</a>

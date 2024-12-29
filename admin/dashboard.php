@@ -28,9 +28,8 @@ $_SESSION["officename"] = $row["office_name"];
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4><?php echo $row["office_name"]; ?></h4>
+        <h4><?php echo $_SESSION["officename"]; ?></h4>
         <a href="dashboard.php" class="active">Dashboard</a>
-        <a href="user_management.html">User Management</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php">Booking Management</a>
         <a href="reports.html">Reports</a>
