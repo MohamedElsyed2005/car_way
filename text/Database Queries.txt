@@ -1,3 +1,5 @@
+CREATE DATABASE car_way;
+
 CREATE TABLE office(
     office_id INT PRIMARY KEY AUTO_INCREMENT,
     office_name VARCHAR(255) NOT NULL,
@@ -54,14 +56,43 @@ CREATE TABLE office_accounts(
     FOREIGN KEY(office_id) REFERENCES office(office_id)
 );
 
-office:
+-- office:
 INSERT INTO office VALUES ('1','Car Way_newYork','new york');
 INSERT INTO office VALUES ('2','Car Way_Egypt','Egypt');
 INSERT INTO office VALUES ('3','Car Way_London','London');
 
-Admin Accounts:
+-- Admin Accounts:
 INSERT INTO office_accounts VALUES ('1','admin1@Carway.com','admin1');
 INSERT INTO office_accounts VALUES ('2','admin2@Carway.com','admin2');
 INSERT INTO office_accounts VALUES ('3','admin3@Carway.com','admin3');
 
-ALTER TABLE car ADD COLUMN price decimal NOT NULL
+=======================================================================================================================
+
+# to know constraint_name for FOREIGN KEY in car_reservation table
+SELECT constraint_name
+FROM information_schema.key_column_usage
+WHERE table_name = 'car_reservation' AND referenced_table_name = 'car';
+
+ALTER TABLE car_reservation
+DROP CONSTRAINT car_reservation_ibfk_1;
+
+
+ALTER TABLE car_reservation
+ADD CONSTRAINT delete_car FOREIGN KEY (car_id) 
+REFERENCES car(car_id)
+ON DELETE NO ACTION 
+ON UPDATE CASCADE;
+
+################################################################################
+START TRIGGER
+################################################################################
+DELIMITER $$
+CREATE TRIGGER before_car_delete
+BEFORE DELETE ON car
+FOR EACH ROW
+BEGIN
+    UPDATE car_reservation 
+    SET car_id = 0
+    WHERE car_id = OLD.car_id;
+END$$
+DELIMITER ;
