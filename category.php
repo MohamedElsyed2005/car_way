@@ -10,7 +10,6 @@ if (isset($_SESSION['id'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +28,12 @@ if (isset($_SESSION['id'])) {
     <img src="imgs/logo.png" class="nav-logo">
     <div class="nav-menu" id="navMenu">
         <ul>
-            <li><a href="index.html" class="link">Home</a></li>
-            <li><a href="login.html" class="link">User</a></li>
-            <li><a href="admin/loginAdmin.html" class="link">Admin</a></li>
-            <li><a href="category.php" class="link active">Categoty</a></li>
-            <li><a href="About_us.php" class="link">About</a></li>
+        <li><a href="Home.php" class="link">Home</a></li>
+        <li><a href="MyCar.php" class="link">My Cars</a></li>
+        <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
+        <li><a href="category.php" class="link active">Categoty</a></li>
+        <li><a href="About_us.php" class="link">About</a></li>
+        <li><a href="profile.php" class="link">profile</a></li>
         </ul>
     </div>
 </nav>
@@ -45,8 +45,6 @@ if (isset($_SESSION['id'])) {
         <!--1-->
         <div class="card" data-bg="imgs/mercedes.png" onclick="window.location.href='Rent_Car.php?category_id=Mercedes'" ><img src="imgs/mercedes.png" width="120" height="120" alt="">
         </div>
-
-
         <!--1-->
         <div class="card" data-bg="imgs/audi2.png" onclick="window.location.href='Rent_Car.php?category_id=Audi'"><img src="imgs/audi2.png" width="90%" height="auto" alt=""></div>
 
@@ -106,7 +104,7 @@ if (isset($_SESSION['id'])) {
   <!--End page -->
 
   <script>
-    document.body.style.backgroundImage = "url('../car_way/imgs/carway.png')";
+    document.body.style.backgroundImage = "url('../car_way/imgs/logo.png')";
     document.body.style.backgroundColor = "black";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundSize = "20%";
@@ -122,7 +120,7 @@ if (isset($_SESSION['id'])) {
         document.body.style.backgroundImage = `url('${box.getAttribute('data-bg')}')`;
       });
       box.addEventListener('mouseleave', () => {
-        document.body.style.backgroundImage = "url('../car_way/imgs/carway.png')";
+        document.body.style.backgroundImage = "url('../car_way/imgs/logo.png')";
         document.body.style.backgroundRepeat = "no-repeat";
         document.body.style.backgroundPosition = "center";
         document.body.style.backgroundSize = "20%";
