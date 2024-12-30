@@ -29,10 +29,10 @@ if (isset($_SESSION['id'])) {
     <img src="imgs/logo.png" class="nav-logo">
     <div class="nav-menu" id="navMenu">
         <ul>
-            <li><a href="index.html" class="link active">Home</a></li>
+            <li><a href="index.html" class="link">Home</a></li>
             <li><a href="login.html" class="link">User</a></li>
             <li><a href="admin/loginAdmin.html" class="link">Admin</a></li>
-            <li><a href="category.php" class="link">Categoty</a></li>
+            <li><a href="category.php" class="link active">Categoty</a></li>
             <li><a href="About_us.php" class="link">About</a></li>
         </ul>
     </div>

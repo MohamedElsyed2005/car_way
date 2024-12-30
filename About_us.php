@@ -34,7 +34,7 @@ $row = mysqli_fetch_assoc($result);
       <a href="" class="about_ancores" style="margin-left: 20px;"> Maserati </a>
     </div>
   </div>
-  <a href="Home.php"><img src="imgs/logo2.png" alt=""></a>
+  <a href="index.html"><img src="imgs/logo2.png" alt=""></a>
   <div class="about-container">
     <h1>About Us</h1>
     <p>"At Carway, we are committed to providing exceptional car rental
