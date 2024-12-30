@@ -59,6 +59,8 @@ $_SESSION["officename"] = $row["office_name"];
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
@@ -67,6 +69,8 @@ $_SESSION["officename"] = $row["office_name"];
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
@@ -83,6 +87,8 @@ $_SESSION["officename"] = $row["office_name"];
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="card text-white bg-danger mb-3">
                     <div class="card-body">
@@ -102,6 +108,30 @@ $_SESSION["officename"] = $row["office_name"];
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h5>Daily Income (in all branches)</h5>
+                        <p><?php 
+                             $sql = "SELECT DATE(car_reservation.reserve_date) AS transaction_date, SUM(payment.cash) AS daily_income
+                                     FROM payment 
+                                     JOIN car_reservation 
+                                     ON payment.reservation_id = car_reservation.reservation_id
+                                     GROUP BY DATE(car_reservation.reserve_date)
+                                     ORDER BY transaction_date;";
+                             $result = mysqli_query($conn, $sql);
+                             $row = mysqli_fetch_assoc($result);
+                             if (mysqli_num_rows($result) > 0){
+                                echo $row["daily_income"];
+                             } else {
+                                echo 0;   
+                             }?>$</p>
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
     </div>
     <script src="../JS/logout.js"></script>
