@@ -35,17 +35,7 @@ $_SESSION["officename"] = $row["office_name"];
         <a href="User_management.php">User Management</a>
         <a href="report.php" class="active">report</a>
         <a href="UserInfo.php">User</a>
-        <div class="nav-button">
-            <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
-        </div>
-        <!-- Logout Modal -->
         <div id="logoutModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2></h2>
-                <p></p>
-                <!-- <button class="btn modal-btn" onclick="logout()">Yes, Log me out</button> -->
-                <!-- <button class="btn modal-btn" onclick="closeModal()">Cancel</button> -->
             </div>
         </div>
     </div>

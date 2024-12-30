@@ -31,9 +31,6 @@ $row = mysqli_fetch_assoc($result);
         <a href="User_management.php">User Management</a>
         <a href="report.php">report</a>
         <a href="UserInfo.php" class="active">User</a>
-        <div class="nav-button">
-            <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
-        </div>
         <!-- Logout Modal -->
         <div id="logoutModal" class="modal">
             <div class="modal-content">
