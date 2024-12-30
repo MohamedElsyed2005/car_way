@@ -1,7 +1,10 @@
 <?php
-   require 'config.php';
-   $_SESSION = [];
-   session_unset();
-   session_destroy();
-   header("Location: index.html")
+require 'config.php';
+session_start(); 
+$_SESSION = [];
+session_unset();
+session_destroy();
+setcookie(session_name(), '', time() - 3600, '/'); 
+header("Location: index.html");
+exit;
 ?>

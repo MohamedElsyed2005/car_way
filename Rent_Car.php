@@ -1,7 +1,18 @@
 <?php
 session_start();
 require 'config.php';
+
+if (!isset($_SESSION['id'])) {
+    header('Location: index.html');
+    exit();
+}
+$_SESSION['category']=false;
+if (isset($_GET['category_id'])) {
+    $category_id = $_GET['category_id'];
+    $_SESSION["category"] = true;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +35,7 @@ require 'config.php';
                     <li><a href="Home.php" class="link">Home</a></li>
                     <li><a href="MyCar.php" class="link">My Cars</a></li>
                     <li><a href="Rent_Car.php" class="link active">Rent Cars</a></li>
+                    <li><a href="category.php" class="link">Categoty</a></li>
                     <li><a href="About_us.php" class="link">About</a></li>
                     <li><a href="profile.php" class="link">profile</a></li>
                 </ul>
@@ -31,48 +43,80 @@ require 'config.php';
             <div class="nav-button">
                 <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
             </div>
-                    <!-- Logout Modal -->
-        <div id="logoutModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2>Are you sure you want to log out?</h2>
-                <p>If you log out, you will need to log in again to continue using the service.</p>
-                <button class="btn modal-btn" onclick="logout()">Yes, Log me out</button>
-                <button class="btn modal-btn" onclick="closeModal()">Cancel</button>
+            <!-- Logout Modal -->
+            <div id="logoutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Are you sure you want to log out?</h2>
+                    <p>If you log out, you will need to log in again to continue using the service.</p>
+                    <button class="btn modal-btn" onclick="logout()">Yes, Log me out</button>
+                    <button class="btn modal-btn" onclick="closeModal()">Cancel</button>
+                </div>
             </div>
-        </div>
         </nav>
+
         <div class="car-container">
             <div class="car-list">
                 <?php
+                $current_date = date("Y-m-d");
+                $sql = "SELECT car_id FROM car_reservation WHERE return_date < '$current_date'";
+                $result = $conn->query($sql);
+                
+                if ($result === false) {
+                    die("Error: " . $conn->error);  // هذا سيساعدك على معرفة سبب فشل الاستعلام
+                }
+                
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $sql_update = "UPDATE car SET status = 'active' WHERE car_id = '{$row['car_id']}'"; 
+                        $result_update = $conn->query($sql_update);
+                
+                        if ($result_update === false) {
+                            die("Error updating car status: " . $conn->error);
+                        }
+                    }
+                } else {
+                    echo "No reservations found with return_date earlier than current date.";
+                }
+
+                if ($_SESSION['category'] == true) {
+                    $sql = "SELECT * FROM car WHERE brand = '$category_id'"; 
+                    $result = $conn->query($sql);
+                } else {
                     $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
                     $sql = "SELECT * FROM car, office 
-                           WHERE car.office_id = office.office_id 
-                           AND (car.brand LIKE '%$search%' OR office.office_name LIKE '%$search%')";
+                            WHERE car.office_id = office.office_id 
+                            AND (car.brand LIKE '%$search%' OR office.office_name LIKE '%$search%')";
                     $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<div class='car-item'>
-                                <h3>" . $row['plate_id'] . "</h3>
-                                <p>Brand: " . $row['brand'] . "</p>
-                                <p>Status: " . $row['status'] . "</p>
-                                <p>Office name: " . $row['office_name'] . "</p>
-                                <form method='POST' action='payment.php'>
+                }
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='car-item'>
+                            <h3>" . $row['plate_id'] . "</h3>
+                            <p>Brand: " . $row['brand'] . "</p>
+                            <p>Status: " . $row['status'] . "</p>
+                            <p>Office name: " . $row['office_id'] . "</p>
+                            <form method='POST' action='payment.php'>
                                 <input type='hidden' name='plate_id' value='" . $row['plate_id'] . "'>";
                                 if ($row['status'] == 'active') {
                                     echo "<button type='submit' class='rent-btn'>Rent Now</button>";
+                                }else{
+                                    $sql_car = "SELECT return_date FROM car_reservation WHERE car_id = '$row[car_id]'"; 
+                                    $result_car = $conn->query($sql_car);
+                                    $row_car = $result_car->fetch_assoc();
+                                    echo "Available after " . $row_car['return_date'];
                                 }
-                                echo "</form>
-                                </div>";
-                                }
-                    } else {
-                    echo "<p>No cars match your search criteria.</p>";
+                            echo "</form>
+                        </div>";
                     }
+                } else {
+                    echo "<p>No cars match your search criteria.</p>";
+                }
                 ?>
             </div>
         </div>
     </div>
+
     <script>
         const searchInput = document.createElement('input');
         searchInput.setAttribute('type', 'text');
@@ -92,25 +136,24 @@ require 'config.php';
             });
         });
     </script>
+
     <script>
-    // Show modal when log out button is clicked
-    function showLogoutModal() {
-        document.getElementById("logoutModal").style.display = "block";
-    }
-
-    // Close modal
-    function closeModal() {
-        document.getElementById("logoutModal").style.display = "none";
-    }
-
-    // Log out and redirect to login page
-    function logout() {
-        if (confirm("Are you sure you want to log out?")) {
-            window.location.href = "log_out.php"; // Redirect to the PHP logout script
+        // Show modal when log out button is clicked
+        function showLogoutModal() {
+            document.getElementById("logoutModal").style.display = "block";
         }
 
-    }
-</script>
+        // Close modal
+        function closeModal() {
+            document.getElementById("logoutModal").style.display = "none";
+        }
+
+        function logout() {
+            if (confirm("Are you sure you want to log out?")) {
+                window.location.href = "log_out.php"; 
+            }
+        }
+    </script>
 </body>
 
 </html>

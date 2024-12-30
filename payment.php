@@ -30,6 +30,7 @@ if (isset($_SESSION['plate_id'])) {
 </head>
 
 <body>
+    
     <!--start content-->
     <div class="payment">
         <div class="col1">
@@ -119,12 +120,17 @@ if (isset($_SESSION['plate_id'])) {
                         <br>
                         <input class="about_button" type="submit" value="Rent This Car Now">
                     </form>
+                    <a href="Rent_Car.php"><button class="about_button" style=" margin-top: 30px; background-color: gray;    background: linear-gradient(140deg, #647c90, #43515c);"> Back To Rent_Car</button></a>
                 </div>
             </div>
         </div>
     </div>
     </div>
     <script>
+
+        document.body.style.backgroundColor = "#b9b7bd";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundSize = "20%";
         document.addEventListener("DOMContentLoaded", function() {
             document.body.style.zoom = "80%";
         });

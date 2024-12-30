@@ -34,6 +34,7 @@ if (!empty($_SESSION["id"])) {
                     <li><a href="Home.php" class="link">Home</a></li>
                     <li><a href="MyCar.php" class="link">My Cars</a></li>
                     <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
+                    <li><a href="category.php" class="link">Categoty</a></li>
                     <li><a href="About_us.php" class="link">About</a></li>
                     <li><a href="profile.php" class="link  active">profile</a></li>
                 </ul>
