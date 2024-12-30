@@ -35,27 +35,30 @@ require 'config.php';
         <div class="car-container">
             <div class="car-list">
                 <?php
-                $search = isset($_GET['search']) ? $_GET['search'] : '';
-                $sql = "SELECT * FROM car, office WHERE car.office_id = office.office_id";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
+                    $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+                    $sql = "SELECT * FROM car, office 
+                           WHERE car.office_id = office.office_id 
+                           AND (car.brand LIKE '%$search%' OR office.office_name LIKE '%$search%')";
+                    $result = $conn->query($sql);
 
-
-                        echo "<div class='car-item'>
-                        <h3>" . $row['plate_id'] . "</h3>
-                        <p>Brand: " . $row['brand'] . "</p>
-                        <p>Status: " . $row['status'] . "</p>
-                        <p>Office name: " . $row['office_name'] . "</p>
-                        <form method='POST' action='payment.php'>
-                            <input type='hidden' name='plate_id' value='" . $row['plate_id'] . "'>
-                            <button type='submit' class='rent-btn'>Rent Now</button>
-                        </form>
-                    </div>";
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<div class='car-item'>
+                                <h3>" . $row['plate_id'] . "</h3>
+                                <p>Brand: " . $row['brand'] . "</p>
+                                <p>Status: " . $row['status'] . "</p>
+                                <p>Office name: " . $row['office_name'] . "</p>
+                                <form method='POST' action='payment.php'>
+                                <input type='hidden' name='plate_id' value='" . $row['plate_id'] . "'>";
+                                if ($row['status'] == 'active') {
+                                    echo "<button type='submit' class='rent-btn'>Rent Now</button>";
+                                }
+                                echo "</form>
+                                </div>";
+                                }
+                    } else {
+                    echo "<p>No cars match your search criteria.</p>";
                     }
-                } else {
-                    echo "<p>No cars available at the moment.</p>";
-                }
                 ?>
             </div>
         </div>
@@ -80,4 +83,5 @@ require 'config.php';
         });
     </script>
 </body>
+
 </html>
