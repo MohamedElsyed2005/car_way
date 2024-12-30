@@ -58,25 +58,16 @@ if (isset($_GET['category_id'])) {
         <div class="car-container">
             <div class="car-list">
                 <?php
-                $current_date = date("Y-m-d");
-                $sql = "SELECT car_id FROM car_reservation WHERE return_date < '$current_date'";
+
+                $current_date = date("Y-m-d");   //get today date
+                $sql = "SELECT car_id FROM car_reservation WHERE return_date < '$current_date'";  // get car_id when return_date < '$current_date'
                 $result = $conn->query($sql);
-                
-                if ($result === false) {
-                    die("Error: " . $conn->error);  // هذا سيساعدك على معرفة سبب فشل الاستعلام
-                }
                 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $sql_update = "UPDATE car SET status = 'active' WHERE car_id = '{$row['car_id']}'"; 
-                        $result_update = $conn->query($sql_update);
-                
-                        if ($result_update === false) {
-                            die("Error updating car status: " . $conn->error);
-                        }
+                        $opt = $conn->query($sql_update);
                     }
-                } else {
-                    echo "No reservations found with return_date earlier than current date.";
                 }
 
                 if ($_SESSION['category'] == true) {
@@ -89,22 +80,40 @@ if (isset($_GET['category_id'])) {
                             AND (car.brand LIKE '%$search%' OR office.office_name LIKE '%$search%')";
                     $result = $conn->query($sql);
                 }
+                
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+
+                        $sql_update = "UPDATE car SET status = 'active' WHERE car_id = '{$row['car_id']}'"; 
+
+                        $cheak= "SELECT MAX(car_reservation.return_date) AS lastest_return_date
+                                        FROM car_reservation
+                                        where  car_id = '{$row['car_id']}'
+                                        GROUP BY car_reservation.car_id" ;        //max(car_id)-.>reversetion<$current_date
+                        $opt = $conn->query($cheak);
+                        $x = $opt ->fetch_assoc();
+                        if($x['lastest_return_date'] < $current_date ){
+                             $result_update = $conn->query($sql_update);
+                        }
+
                         echo "<div class='car-item'>
                             <h3>" . $row['plate_id'] . "</h3>
                             <p>Brand: " . $row['brand'] . "</p>
-                            <p>Status: " . $row['status'] . "</p>
+                            <p>type: " . $row['type'] . "</p>
+                            <p>Manufacture: " . $row['manufacture'] . "</p>
+                            <p>Year: " . $row['year'] . "</p>
+                            <p>Color: " . $row['color'] . "</p>
+                            <p>Price: " . $row['price'] . "$ Per Day</p>
                             <p>Office name: " . $row['office_id'] . "</p>
                             <form method='POST' action='payment.php'>
                                 <input type='hidden' name='plate_id' value='" . $row['plate_id'] . "'>";
-                                if ($row['status'] == 'active') {
+                                if ($row['status'] == 'active' AND $x['lastest_return_date'] < $current_date ) {
                                     echo "<button type='submit' class='rent-btn'>Rent Now</button>";
                                 }else{
                                     $sql_car = "SELECT return_date FROM car_reservation WHERE car_id = '$row[car_id]'"; 
                                     $result_car = $conn->query($sql_car);
                                     $row_car = $result_car->fetch_assoc();
-                                    echo "Available after " . $row_car['return_date'];
+                                    echo "Available after " . $x['lastest_return_date'];
                                 }
                             echo "</form>
                         </div>";
