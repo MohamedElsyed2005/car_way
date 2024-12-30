@@ -31,6 +31,16 @@ require 'config.php';
             <div class="nav-button">
                 <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
             </div>
+                    <!-- Logout Modal -->
+        <div id="logoutModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Are you sure you want to log out?</h2>
+                <p>If you log out, you will need to log in again to continue using the service.</p>
+                <button class="btn modal-btn" onclick="logout()">Yes, Log me out</button>
+                <button class="btn modal-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
         </nav>
         <div class="car-container">
             <div class="car-list">
@@ -82,6 +92,25 @@ require 'config.php';
             });
         });
     </script>
+    <script>
+    // Show modal when log out button is clicked
+    function showLogoutModal() {
+        document.getElementById("logoutModal").style.display = "block";
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById("logoutModal").style.display = "none";
+    }
+
+    // Log out and redirect to login page
+    function logout() {
+        if (confirm("Are you sure you want to log out?")) {
+            window.location.href = "log_out.php"; // Redirect to the PHP logout script
+        }
+
+    }
+</script>
 </body>
 
 </html>
