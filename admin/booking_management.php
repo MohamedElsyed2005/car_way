@@ -71,7 +71,7 @@ $row = mysqli_fetch_assoc($result);
                               <td>" . $row['reserve_date'] . "</td>
                               <td>" . $row['pick_up_date'] . "</td>
                               <td>" . $row['return_date'] . "</td>";
-                        if ($row['return_date'] > $curr_date) {
+                        if ($row['return_date'] > $curr_date & $row['pick_up_date'] < $curr_date) {
                            echo "<td><span class='badge bg-warning'>rented</span></td>";
                         } else {
                             echo "<td><span class='badge bg-success'>active</span></td>";
