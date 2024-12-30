@@ -1,9 +1,10 @@
 body{
   
-            background-repeat: no-repeat; /* منع تكرار الصورة */
-            background-size: contain; /* احتواء الصورة */
-            background-position: center; /* وضع الصورة في المنتصف */
-            transition: background 1s ease; /* تأثير انتقال سلس */
+            background-repeat: no-repeat; 
+            background-size: contain; 
+            background-position: center;
+            background-color: black;
+            transition: background 1s ease;
             background-color: black;
 }
 

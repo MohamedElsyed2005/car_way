@@ -2,10 +2,11 @@
 session_start();
 require '../config.php';
 $office_id = $_SESSION["id"];
-$sql =  "SELECT *
-         FROM car_reservation
-         LEFT JOIN car ON car.car_id = car_reservation.car_id
-         WHERE car.office_id = '$office_id';";
+$sql =  "SELECT * 
+         FROM car_reservation 
+         LEFT JOIN car ON car.car_id = car_reservation.car_id 
+         LEFT JOIN customer ON customer.customer_id = car_reservation.customer_id 
+         LEFT JOIN office ON office.office_id = car.office_id";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 ?>
@@ -26,22 +27,25 @@ $row = mysqli_fetch_assoc($result);
         <h4><?php echo $_SESSION["officename"];?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php">Car Management</a>
-        <a href="booking_management.php" class="active">Booking Management</a>
-        <a href="User_management.php">User Management</a>
+        <a href="booking_management.php">Booking Management</a>
+        <a href="User_management.php"class="active">User Management</a>
     </div>
 
     <!-- Main Content -->
     <div class="content">
-        <h1>Booking Management</h1>
+        <h1>User Management</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Customer</th>
+                    <th>Customer Name</th>
+                    <th>Customer phone</th>
+                    <th>plate_id</th>
                     <th>Car</th>
-                    <th>Booking Date</th>
-                    <th>pickUp Date</th>
-                    <th>return Date</th>
+                    <th>Model</th>
+                    <th>Office id</th>
+                    <th>Office Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,10 +55,13 @@ $row = mysqli_fetch_assoc($result);
                         echo "<tr>
                             <td>" . $row['reservation_id'] . "</td>
                             <td>" . $row['customer_id'] . "</td>
+                            <td>" . $row['first_name'] . " ". $row['last_name'] . "</td>
+                            <td>" . $row['phone'] . "</td>
+                            <td>" . $row['plate_id'] . "</td>
                             <td>" . $row['car_id'] . "</td>
-                            <td>" . $row['reserve_date'] . "</td>
-                            <td>" . $row['pick_up_date'] . "</td>
-                            <td>" . $row['return_date'] . "</td>
+                            <td>" . $row['model'] . "</td>
+                            <td>" . $row['office_id'] . "</td>
+                            <td>" . $row['office_name'] . "</td>
                             </tr>";
                     }
                 } else {

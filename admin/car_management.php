@@ -25,13 +25,11 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4><?php echo $row["office_name"];?></h4>
+        <h4><?php echo $_SESSION["officename"];?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php" class="active">Car Management</a>
-        <a href="user_management.html">User Management</a>
         <a href="booking_management.php">Booking Management</a>
-        <a href="reports.html">Reports</a>
-        <a href="settings.html">Settings</a>
+        <a href="User_management.php">User Management</a>
     </div>
 
     <!-- Main Content -->

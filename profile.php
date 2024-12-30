@@ -32,9 +32,10 @@ if (!empty($_SESSION["id"])) {
             <div class="nav-menu" id="navMenu">
                 <ul>
                     <li><a href="Home.php" class="link">Home</a></li>
-                    <li><a href="test.php" class="link">My Cars</a></li>
+                    <li><a href="MyCar.php" class="link">My Cars</a></li>
                     <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
-                    <li><a href="About_us.html" class="link">About</a></li>
+                    <li><a href="category.php" class="link">Categoty</a></li>
+                    <li><a href="About_us.php" class="link">About</a></li>
                     <li><a href="profile.php" class="link  active">profile</a></li>
                 </ul>
             </div>
@@ -57,25 +58,17 @@ if (!empty($_SESSION["id"])) {
             <!--Start content-->
             <div class="content">
                 <div class="profile">
-
                     <!-- First Part -->
                     <div class="first_part">
-
                         <!-- Contact Part -->
-
                         <div class="contact">
-
                             <!-- profile_pic Part -->
-
                             <div class="profile_pic">
                                 <img src="imgs/anonymous-avatar-icon-25.jpg" class="Profile pic " width="250"
                                     height="250" class="pic">
                             </div>
-
                             <!-- profile_Contact Part -->
-
                             <div class="profile_contact">
-
                                 <div class="contact_account">
                                     <h1 class="name_style"> <?php echo $row["first_name"]; ?> </h1>
                                     <h2 style="margin-left: 10px;"> Contact :</h2>
@@ -103,165 +96,137 @@ if (!empty($_SESSION["id"])) {
                                             </svg> Twitter </button>
                                     </div>
                                 </div>
-
                                 <!-- profile_about Part -->
-
-                                <div class="about">
+                                <!-- <div class="about">
                                     <h2 style="margin-left: 10px;"> About :</h2>
                                     <textarea class="info_input" name="about" id=""
                                         style="margin-left: 50px; margin-bottom: 50px;" rows="6" cols="33"></textarea>
-                                </div>
-
-                                <a href="Courses.html"><img src="imgs\logo.png" class="profile_logo" width="250"
-                                        height="250" id="#prof_logo"></a>
-
-
+                                </div> -->
+                                <!-- <a href="Courses.html"><img src="imgs\logo.png" class="profile_logo" width="250"
+                                        height="250" id="#prof_logo"></a> -->
                             </div>
-
                         </div>
-
-
                         <!-- Info Part -->
-
                         <div class="info">
-
                             <h2> Basic Info</h2>
-
-
-                            <form action="">
+                            <form action="edit_profile.php" method="post">
                                 <!-- First Name Part -->
                                 <p>
                                 <div class="info_lines">First Name : <button class="edit_button" id="first_name_button"
                                         type="button"> edit </button></div>
-                                <input class="info_input" type="text" name="first_name" id="first_name"
-                                    placeholder="<?php echo $row["first_name"]; ?>" size="60" disabled>
+                                <input class="info_input" type="text" name="first_name" id="first_name" value="<?php echo $row["first_name"]; ?>"
+                                    placeholder="<?php echo $row["first_name"]; ?>" size="60"disabled>
                                 </p>
-
                                 <!-- Last Name Part -->
                                 <p>
                                 <div class="info_lines">Last Name : <button class="edit_button" id="last_name_button"
                                         type="button"> edit </button></div>
-                                <input class="info_input" type="text" name="last_name" id="last_name"
+                                <input class="info_input" type="text" name="last_name" id="last_name" value="<?php echo $row["last_name"]; ?>"
                                     placeholder="<?php echo $row["last_name"]; ?>" size="60" disabled>
                                 </p>
-
                                 <!-- E-mail Part -->
                                 <p>
                                 <div class="info_lines">E-mail : <button class="edit_button" id="E-mail_button"
                                         type="button"> edit </button></div>
-                                <br> <input class="info_input" type="email" name="email" id="email" placeholder="<?php echo $row["Email"]; ?>"
+                                <br> <input class="info_input" type="email" name="email" id="email" value="<?php echo $row["Email"]; ?>" placeholder="<?php echo $row["Email"]; ?>"
                                     size="60" disabled>
                                 </p>
-
+                                <!-- Phone Part -->
+                                <p>
+                                <div class="info_lines">Phone Number : <button class="edit_button" id="Phone_button"
+                                        type="button"> edit </button></div>
+                                <br> <input class="info_input" type="text" name="phone" id="phone" value="<?php echo $row["phone"]; ?>" placeholder="<?php echo $row["phone"]; ?>"
+                                    size="60" disabled>
+                                </p>
                                 <!-- Password Part -->
                                 <p>
                                 <div class="info_lines">Password : <button class="edit_button" id="password_button"
                                         type="button"> edit </button></div>
-                                <br> <input class="info_input" type="password" name="password" id="password"
+                                <br> <input class="info_input" type="password" name="password" id="password" value="<?php echo $row["password"]; ?>"
                                     placeholder="<?php echo $row["password"]; ?>" size="60" disabled>
                                 </p>
-
                                 <!-- Location Part -->
                                 <p>
                                 <div class="info_lines">Location : <button class="edit_button" id="Location_button"
                                         type="button"> edit </button></div>
-                                <br> <input class="info_input" type="text" name="Location" id="Location"
+                                <br> <input class="info_input" type="text" name="Location" id="Location" value="<?php echo $row["address"]; ?>"
                                     placeholder="Location" size="60" disabled>
                                 </p>
-
                                 <!-- GitHub Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">Github : <button class="edit_button" id="Github_button"
                                         type="button"> edit </button></div>
                                 <br> <input class="info_input" type="text" name="Github" id="Github"
                                     placeholder="Github" size="60" disabled>
-                                </p>
-
+                                </p> -->
                                 <!-- LinkedIn Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">LinkedIn : <button class="edit_button" id="LinkedIn_button"
                                         type="button"> edit </button></div>
                                 <br> <input class="info_input" type="text" name="LinkedIn" id="LinkedIn"
                                     placeholder="LinkedIn" size="60" disabled>
-                                </p>
-
+                                </p> -->
                                 <!-- X Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">X (formerly Twitter) : <button class="edit_button" id="X_button"
                                         type="button"> edit </button></div>
                                 <br> <input class="info_input" type="email" name="X (formerly Twitter)"
                                     id="X (formerly Twitter)" placeholder="X (formerly Twitter)" size="60" disabled>
-                                </p>
-
+                                </p> -->
                                 <!-- Summary Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">Summary : <button class="edit_button" id="Summary_button"
                                         type="button"> edit </button></div>
                                 <br> <input class="info_input" style="padding-bottom: 50px;" type="text" name="Summary"
                                     id="Summary" placeholder="Summary" size="60" disabled>
                                 </p>
-
-                                <h2> Experience</h2>
-
+                                <h2> Experience</h2> -->
                                 <!-- Work Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">Work : <button class="edit_button" id="Work_button"
                                         type="button"> edit </button></div>
                                 <br> <input class="info_input" style="padding-bottom: 50px;" type="text" name="Work"
                                     id="Work" placeholder="Work" size="60" disabled>
-                                </p>
-
+                                </p> -->
                                 <!-- Education Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">Education : <button class="edit_button" id="Education_button"
                                         type="button"> edit </button></div>
                                 <input class="info_input" style="padding-bottom: 50px;" type="text" name="Education"
                                     id="Education" placeholder="Education" size="60" disabled>
                                 </p>
-
-                                <h2> Skills</h2>
-
+                                <h2> Skills</h2> -->
                                 <!-- Technical Skills Part -->
-                                <p>
+                                <!-- <p>
                                 <div class="info_lines">Technical Skills : <button class="edit_button"
                                         id="Technical Skills_button" type="button"> edit </button></div>
                                 <input class="info_input" style="padding-bottom: 50px;" type="text"
                                     name="Technical Skills" id="Technical Skills" placeholder="Technical Skills"
                                     size="60" disabled>
                                 </p>
-
                                 <P>
                                 <p><button class="edit_button"><img src="change.png" alt="" width="10px" height="10px">
                                         Replace Profile Pic</button></p>
                                 <p><button class="edit_button"><img src="delete.png" alt="" width="10px" height="10px">
                                         Delete Profile Pic</button></p>
                                 </P>
-                                <br>
+                                <br> -->
                                 <!-- submit Part -->
-
-                                <input class="buttonSubmit" type="submit" value="Update Info">
-
-
+                                <input class="buttonSubmit" type="submit" name="submit" value="Update Info">
                             </form>
-
-
                         </div>
-
-
                         <!-- Second Part -->
                     </div>
-
                     <div class="support">
                         <p>support</p>
                     </div>
-
                 </div>
             </div>
             <!--End content-->
         </div>
         <!--End page -->
         <script src="JS/Profile.js"></script>
-
+        <script src="JS/logout.js"></script>
 </body>
 
 </html>

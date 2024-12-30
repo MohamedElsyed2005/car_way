@@ -28,13 +28,11 @@ $_SESSION["officename"] = $row["office_name"];
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4><?php echo $row["office_name"]; ?></h4>
+        <h4><?php echo $_SESSION["officename"]; ?></h4>
         <a href="dashboard.php" class="active">Dashboard</a>
-        <a href="user_management.html">User Management</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php">Booking Management</a>
-        <a href="reports.html">Reports</a>
-        <a href="settings.html">Settings</a>
+        <a href="User_management.php">User Management</a>
         <div class="nav-button">
             <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
         </div>
@@ -62,6 +60,8 @@ $_SESSION["officename"] = $row["office_name"];
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
@@ -70,25 +70,90 @@ $_SESSION["officename"] = $row["office_name"];
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
-                        <h5>Pending Bookings</h5>
-                        <p>15</p>
+                        <h5>Total Bookings</h5>
+                        <p><?php
+                            $sql = "SELECT COUNT(*) AS Booking_number
+                                    FROM car_reservation
+                                    LEFT JOIN car ON car.car_id = car_reservation.car_id
+                                    WHERE car.office_id = '$office_id'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            echo $row["Booking_number"];
+                        ?></p>
                     </div>
                 </div>
             </div>
+
+
             <div class="col-md-3">
                 <div class="card text-white bg-danger mb-3">
                     <div class="card-body">
                         <h5>Total Earn</h5>
-                        <p>36630$</p>
+                        <p><?php 
+                             $sql = "SELECT SUM(cash) AS total
+                                     FROM car_reservation as cr,payment as p, car as c
+                                     WHERE cr.reservation_id = p.reservation_id AND cr.car_id = c.car_id AND c.office_id = '$office_id'
+                                     GROUP BY c.office_id ";
+                             $result = mysqli_query($conn, $sql);
+                             $row = mysqli_fetch_assoc($result);
+                             if (mysqli_num_rows($result) > 0){
+                                echo $row["total"];
+                             }
+                                echo 0;     
+                        ?>$</p>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h5>Daily Income (in all branches)</h5>
+                        <p><?php 
+                             $sql = "SELECT DATE(car_reservation.reserve_date) AS transaction_date, SUM(payment.cash) AS daily_income
+                                     FROM payment 
+                                     JOIN car_reservation 
+                                     ON payment.reservation_id = car_reservation.reservation_id
+                                     GROUP BY DATE(car_reservation.reserve_date)
+                                     ORDER BY transaction_date;";
+                             $result = mysqli_query($conn, $sql);
+                             $row = mysqli_fetch_assoc($result);
+                             if (mysqli_num_rows($result) > 0){
+                                echo $row["daily_income"];
+                             } else {
+                                echo 0;   
+                             }?>$</p>
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
     </div>
-    <script src="../JS/logout.js"></script>
+    <script>
+        // Show modal when log out button is clicked
+        function showLogoutModal() {
+            document.getElementById("logoutModal").style.display = "block";
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById("logoutModal").style.display = "none";
+        }
+
+        // Log out and redirect to login page
+        function logout() {
+            if (confirm("Are you sure you want to log out?")) {
+                window.location.href = "../log_out.php"; // Redirect to the PHP logout script
+            }
+
+        }
+    </script>
     <!-- Footer -->
     <footer>
         © 2024 Car Rental System -

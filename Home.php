@@ -17,9 +17,10 @@
             <div class="nav-menu" id="navMenu">
                 <ul>
                     <li><a href="Home.php" class="link active">Home</a></li>
-                    <li><a href="#" class="link">My Cars</a></li>
+                    <li><a href="MyCar.php" class="link">My Cars</a></li>
                     <li><a href="Rent_Car.php" class="link">Rent Cars</a></li>
-                    <li><a href="About_us.html" class="link">About</a></li>
+                    <li><a href="category.php" class="link">Categoty</a></li>
+                    <li><a href="About_us.php" class="link">About</a></li>
                     <li><a href="profile.php" class="link">profile</a></li>
                 </ul>
             </div>
