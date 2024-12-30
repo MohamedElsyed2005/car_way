@@ -111,41 +111,65 @@ $_SESSION["officename"] = $row["office_name"];
             </div>
 
             <div class="col-md-3">
-    <div class="card text-white bg-dark mb-3">
-        <div class="card-body">
-            <h5>Daily Income (in all branches)</h5>
-            <!-- Form to select date -->
-            <form method="POST" action="">
-                <input type="date" name="search_date" class="form-control mb-2" required>
-                <button type="submit" class="btn btn-primary btn-sm">Search</button>
-            </form>
+                <div class="card text-white bg-dark mb-3">
+                  <div class="card-body">
+                    <h5>Income Between Two Dates</h5>
+                        <form method="POST">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control mb-2" required>
+                            <label for="end_date">End Date:</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control mb-2" required>
+                            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                        </form>
             
-            <p>
+               <p>
                 <?php 
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search_date'])) {
-                    $search_date = $_POST['search_date'];
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['start_date']) && isset($_POST['end_date'])) {
+                    $start_date = $_POST['start_date'];
+                    $end_date = $_POST['end_date'];
+                    $interval = new DatePeriod(
+                        new DateTime($start_date),
+                        new DateInterval('P1D'), 
+                        (new DateTime($end_date))->modify('+1 day') 
+                    );
                     $sql = "SELECT DATE(car_reservation.reserve_date) AS transaction_date, 
                                    SUM(payment.cash) AS daily_income
                             FROM payment 
                             JOIN car_reservation 
                             ON payment.reservation_id = car_reservation.reservation_id
-                            WHERE DATE(car_reservation.reserve_date) = '$search_date'
+                            WHERE DATE(car_reservation.reserve_date) BETWEEN '$start_date' AND '$end_date'
                             GROUP BY DATE(car_reservation.reserve_date);";
+
                     $result = mysqli_query($conn, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    if ($row) {
-                        echo $row["daily_income"] . "$";
-                    } else {
-                        echo "No data found for " . $search_date;
+                    $income_data = [];
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $income_data[$row['transaction_date']] = $row['daily_income'];
                     }
+                    echo "<table class='table table-dark table-bordered'>";
+                    echo "<thead><tr><th>Date</th><th>Income</th></tr></thead>";
+                    echo "<tbody>";
+                    foreach ($interval as $date) {
+                        $current_date = $date->format('Y-m-d');
+                        echo "<tr>";
+                        echo "<td>" . $current_date . "</td>";
+                        if (isset($income_data[$current_date])) {
+                            echo "<td>" . $income_data[$current_date] . "$</td>";
+                        } else {
+                            echo "<td>There isn't income</td>";
+                        }
+                        echo "</tr>";
+                    }
+                    echo "</tbody></table>";
                 } else {
-                    echo "Please select a date to search.";
+                    echo "Please select a date range to search.";
                 }
                 ?>
             </p>
         </div>
     </div>
 </div>
+
+
 
             
         </div>
