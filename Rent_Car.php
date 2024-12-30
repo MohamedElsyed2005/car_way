@@ -94,7 +94,7 @@ if (isset($_GET['category_id'])) {
                         $cheak= "SELECT MAX(car_reservation.return_date) AS lastest_return_date
                                         FROM car_reservation
                                         where  car_id = '{$row['car_id']}'
-                                        GROUP BY car_reservation.car_id" ;        //max(car_id)-.>reversetion<$current_date
+" ;        //max(car_id)-.>reversetion<$current_date
                         $opt = $conn->query($cheak);
                         $x = $opt ->fetch_assoc();
 
@@ -122,6 +122,9 @@ if (isset($_GET['category_id'])) {
                                     echo "<button type='submit' class='rent-btn'>Rent Now</button>";
                                 }else{
                                     $sql_car = "SELECT return_date FROM car_reservation WHERE car_id = '$row[car_id]'"; 
+                                    $result_car = $conn->query($sql_car);
+                                    $row_car = $result_car->fetch_assoc();
+                                    $sql_update = "UPDATE car SET status = 'rented' WHERE car_id = '{$row['car_id']}'"; 
                                     $result_car = $conn->query($sql_car);
                                     $row_car = $result_car->fetch_assoc();
                                     echo "Available after " . $x['lastest_return_date'];
