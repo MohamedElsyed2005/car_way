@@ -24,11 +24,11 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4><?php echo $_SESSION["officename"];?></h4>
+        <h4><?php echo $_SESSION["officename"]; ?></h4>
         <a href="dashboard.php">Dashboard</a>
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php">Booking Management</a>
-        <a href="User_management.php"class="active">User Management</a>
+        <a href="User_management.php" class="active">User Management</a>
     </div>
 
     <!-- Main Content -->
@@ -55,7 +55,7 @@ $row = mysqli_fetch_assoc($result);
                         echo "<tr>
                             <td>" . $row['reservation_id'] . "</td>
                             <td>" . $row['customer_id'] . "</td>
-                            <td>" . $row['first_name'] . " ". $row['last_name'] . "</td>
+                            <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
                             <td>" . $row['phone'] . "</td>
                             <td>" . $row['plate_id'] . "</td>
                             <td>" . $row['car_id'] . "</td>
@@ -76,6 +76,28 @@ $row = mysqli_fetch_assoc($result);
     <footer>
         © 2024 Car Rental System - Admin Dashboard
     </footer>
+    <script>
+        // Filter/Search Table
+        const searchInput = document.createElement('input');
+        searchInput.setAttribute('type', 'text');
+        searchInput.setAttribute('placeholder', 'Search User...');
+        searchInput.classList.add('form-control', 'mb-3');
+
+        const contentDiv = document.querySelector('.content');
+        contentDiv.insertBefore(searchInput, contentDiv.querySelector('table'));
+
+        searchInput.addEventListener('keyup', () => {
+            const filter = searchInput.value.toLowerCase();
+            const rows = document.querySelectorAll('.table tbody tr');
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll('td');
+                const match = Array.from(cells).some((cell) =>
+                    cell.textContent.toLowerCase().includes(filter)
+                );
+                row.style.display = match ? '' : 'none';
+            });
+        });
+    </script>
 </body>
 
 </html>
