@@ -10,6 +10,9 @@
     document.getElementById("E-mail_button").addEventListener("click", function() {
         document.getElementById("email").disabled = false;
     });
+    document.getElementById("Phone_button").addEventListener("click", function() {
+        document.getElementById("phone").disabled = false;
+    });
 
     document.getElementById("password_button").addEventListener("click", function() {
         document.getElementById("password").disabled = false;

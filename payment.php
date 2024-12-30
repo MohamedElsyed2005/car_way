@@ -77,16 +77,12 @@ if (isset($_SESSION['plate_id'])) {
 
 
 
-
-
-
             <div class="col1_2">
                 <div class="col1_2_1">CAR-WAY</div>
                 <div class="col1_2_2">PAYMENT DETAILS</div>
                 <div class="col1_2_3">
 
                     <form action="" method="GET">
-
                         <div class="info_lines" style="margin-top: 10px;">-Id : </div>
                         <br> <input class="info_input" type="text" name="id" placeholder=" Id" disabled>
 
@@ -97,30 +93,13 @@ if (isset($_SESSION['plate_id'])) {
                         <br> <input class="info_input" type="date" name="end" placeholder="End">
                         <button type="submit" class="rent-btn">submit</button>
                     </form>
-
-
-
-
-
                 </div>
             </div>
-
         </div>
-
-
-
-
         <div class="col2">
-
-
-
             <div class="col2_2">
                 <div class="col2_2_1" style="font-size: 20px;">Order Summary</div>
                 <div class="col2_2_2">
-
-
-
-
                     <form action="car_reservation.php" method="GET">
                         <div class="info_lines_2" style="margin-top: 10px;">-Customer and car ID's : </div>
                         <input class="info_input_2" type="number" name=customer_id value="<?php echo $_SESSION["id"]; ?>"  readonly >    
@@ -139,15 +118,11 @@ if (isset($_SESSION['plate_id'])) {
                         <hr>
                         <div class="info_lines_2" style="margin-top: 10px;">-Number Of Days : </div>
                         <input class="info_input_2" type="text" name="days" value=" 
-                        
                         <?php
                         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['start']) && isset($_GET['end'])) {
-
                             $start_date = $_GET['start'];
                             $end_date = $_GET['end'];
-
                             if (!empty($start_date) && !empty($end_date)) {
-
                                 $startDate = new DateTime($start_date);
                                 $endDate = new DateTime($end_date);
                                 $interval = $startDate->diff($endDate);
@@ -166,25 +141,16 @@ if (isset($_SESSION['plate_id'])) {
                             echo "None";
                         }
                         ?>
-                        
-                        
                         " readonly >
-
-
                         <div class="info_lines_2">-TOTAL : </div>
                         <input class="info_input_2" type="text" name="price" value=" 
-
                         <?php
                         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['start']) && isset($_GET['end'])) {
-
                             $start_date = $_GET['start'];
                             $end_date = $_GET['end'];
-
                             $result = mysqli_query($conn, "SELECT price FROM car WHERE plate_id = '$row[plate_id]' ");
                             $price = mysqli_fetch_assoc($result);
-
                             if (!empty($start_date) && !empty($end_date)) {
-
                                 $startDate = new DateTime($start_date);
                                 $startDateformat = $startDate->format('Y-m-d');
                                 $endDate = new DateTime($end_date);
@@ -206,35 +172,22 @@ if (isset($_SESSION['plate_id'])) {
                             echo "None";
                         }
                         ?>
-                        
                         " readonly >
                         <input class="info_input_2" type="date" name="pick_up_date" value="<?php echo $startDateformat; ?>" readonly hidden >
                         <input class="info_input_2" type="date" name="return_date" value="<?php echo $endDateformat; ?>" readonly hidden>
-
                         <br>
                         <br>
                         <input class="about_button" type="submit" value="Rent-This-Car-Now">
                     </form>
-
-
-
                 </div>
-
             </div>
         </div>
-
     </div>
-
-
-
     </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.body.style.zoom = "80%";
         });
     </script>
-
 </body>
-
 </html>
