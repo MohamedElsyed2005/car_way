@@ -59,10 +59,12 @@ if (isset($_GET['category_id'])) {
             <div class="car-list">
                 <?php
 
-                $current_date = date("Y-m-d");   //get today date
-                $sql = "SELECT car_id FROM car_reservation WHERE return_date < '$current_date'";  // get car_id when return_date < '$current_date'
+     //1) Get car When return_date < '$current_date'
+                $current_date = date("Y-m-d");  
+                $sql = "SELECT car_id FROM car_reservation WHERE return_date < '$current_date'"; 
                 $result = $conn->query($sql);
                 
+      //2) Update car When return_date < '$current_date'
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $sql_update = "UPDATE car SET status = 'active' WHERE car_id = '{$row['car_id']}'"; 
@@ -70,6 +72,7 @@ if (isset($_GET['category_id'])) {
                     }
                 }
 
+      //3) Cheak if car fromCategory or Search Bar
                 if ($_SESSION['category'] == true) {
                     $sql = "SELECT * FROM car WHERE brand = '$category_id'"; 
                     $result = $conn->query($sql);
@@ -81,9 +84,11 @@ if (isset($_GET['category_id'])) {
                     $result = $conn->query($sql);
                 }
                 
+       //4) Iterate Around Cars  
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
 
+            //5) يا ولد تراني تهت بس ما دام الكود شغال لا تسوي نفسك فاهم. 
                         $sql_update = "UPDATE car SET status = 'active' WHERE car_id = '{$row['car_id']}'"; 
 
                         $cheak= "SELECT MAX(car_reservation.return_date) AS lastest_return_date
@@ -92,6 +97,9 @@ if (isset($_GET['category_id'])) {
                                         GROUP BY car_reservation.car_id" ;        //max(car_id)-.>reversetion<$current_date
                         $opt = $conn->query($cheak);
                         $x = $opt ->fetch_assoc();
+
+            //6) GET last return_date for each car
+
                         if($x['lastest_return_date'] < $current_date ){
                              $result_update = $conn->query($sql_update);
                         }
@@ -107,6 +115,9 @@ if (isset($_GET['category_id'])) {
                             <p>Office name: " . $row['office_id'] . "</p>
                             <form method='POST' action='payment.php'>
                                 <input type='hidden' name='plate_id' value='" . $row['plate_id'] . "'>";
+
+            //6) decide if it Active(last_return_date < today) Or Not
+
                                 if ($row['status'] == 'active' AND $x['lastest_return_date'] < $current_date ) {
                                     echo "<button type='submit' class='rent-btn'>Rent Now</button>";
                                 }else{
