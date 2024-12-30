@@ -2,8 +2,6 @@
 require 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
-
     $car_id = $_GET["car_id"];
     $customer_id = $_GET["customer_id"];
     $reserve_date = date("Y-m-d");
@@ -13,20 +11,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $car_id = (int)$car_id;
     $customer_id = (int)$customer_id;
     $price = intval(preg_replace('/[^0-9]/', '', $price));  // استخدم preg_replace لاستخراج الرقم فقط
-    if ($customer_id == 1) {
-       // echo "missing";
-    } else {
-       // echo "Car ID: " . $return_date;
-    }
 
-    $sql = "INSERT INTO car_reservation VALUES('', ' $car_id', '$customer_id','$reserve_date', '$pick_up_date', '$return_date')";
-    $result = $conn->query($sql);
-    if ($result) {
-       // echo "done";
-    } else {
-       // echo "error";
-    }
-
+    $updateQuery = "UPDATE car SET status = 'rented' WHERE car_id = '$car_id'";
+   if (mysqli_query($conn, $updateQuery)){
+      $sql = "INSERT INTO car_reservation VALUES('', ' $car_id', '$customer_id','$reserve_date', '$pick_up_date', '$return_date')";
+      if (mysqli_query($conn, $sql)) {
+         echo "<script>alert('Car successfully rented!'); window.location.href = 'MyCar.php';</script>";
+      } else {
+         echo "<script>alert('Failed to add reservation data.'); window.history.back();</script>";
+      }
+   } else {
+         echo "<script>alert('Failed to update car status.'); window.history.back();</script>";
+   }
+      } else {
+         echo "<script>alert('Invalid request. Please try again.'); window.history.back();</script>";
+      }
+    
     //max_reservation_id
     $sql2 = "SELECT max(reservation_id) AS max_reservation_id FROM car_reservation";  
     $result2 = $conn->query($sql2);
@@ -40,4 +40,4 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     } else {
         echo "Error executing query: " . $conn->error;
     }
-}
+
