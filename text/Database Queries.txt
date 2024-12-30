@@ -96,3 +96,37 @@ BEGIN
     WHERE car_id = OLD.car_id;
 END$$
 DELIMITER ;
+
+
+######################################################################################################
+
+INSERT INTO car (plate_id, brand, model, type, manufacture, year, color, office_id, price, status)
+VALUES 
+    ('ABC123', 'Toyota', 'Corolla', 'Sedan', 'Japan', 2021, 'White', 1, 20000.50, 'active'),
+    ('DEF456', 'Honda', 'Civic', 'Sedan', 'Japan', 2020, 'Black', 2, 19000.00, 'active'),
+    ('GHI789', 'Ford', 'Mustang', 'Coupe', 'USA', 2019, 'Red', 1, 35000.75, 'rented'),
+    ('JKL012', 'BMW', 'X5', 'SUV', 'Germany', 2022, 'Blue', 3, 45000.99, 'active'),
+    ('MNO345', 'Chevrolet', 'Malibu', 'Sedan', 'USA', 2018, 'Silver', 2, 17000.00, 'out_of_service'),
+    ('PQR678', 'Mercedes', 'C-Class', 'Sedan', 'Germany', 2023, 'Black', 1, 55000.00, 'active'),
+    ('STU901', 'Kia', 'Sportage', 'SUV', 'South Korea', 2020, 'Gray', 3, 22000.25, 'rented'),
+    ('VWX234', 'Hyundai', 'Tucson', 'SUV', 'South Korea', 2021, 'White', 1, 23000.00, 'active'),
+    ('YZA567', 'Tesla', 'Model 3', 'Electric', 'USA', 2023, 'Red', 2, 60000.00, 'active'),
+    ('BCD890', 'Audi', 'A4', 'Sedan', 'Germany', 2021, 'Blue', 3, 40000.50, 'active');
+
+
+
+
+
+INSERT INTO customer (first_name, last_name, Email, phone, password, address)
+VALUES 
+    ('John', 'Doe', 'john.doe@example.com', '1234567890', 'password123', '123 Main St, Springfield'),
+    ('Jane', 'Smith', 'jane.smith@example.com', '9876543210', 'securepass456', '456 Elm St, Shelbyville'),
+    ('Ahmed', 'Ali', 'ahmed.ali@example.com', '0123456789', 'ahmed@2024', '789 Oak St, Cairo'),
+    ('Maria', 'Gonzalez', 'maria.gonzalez@example.com', '1122334455', 'maria123', '321 Pine St, Mexico City'),
+    ('William', 'Brown', 'william.brown@example.com', '9988776655', 'willpass678', '654 Maple St, Toronto'),
+    ('Emily', 'Davis', 'emily.davis@example.com', '6677889900', 'emily456', '987 Birch St, Vancouver'),
+    ('Omar', 'Hassan', 'omar.hassan@example.com', '5566778899', 'omar_1990', '123 Cedar St, Dubai'),
+    ('Sophia', 'Martinez', 'sophia.martinez@example.com', '4455667788', 'sophia_pass', '456 Walnut St, Madrid'),
+    ('Noah', 'Wilson', 'noah.wilson@example.com', '3344556677', 'noahsecure', '789 Chestnut St, Sydney'),
+    ('Emma', 'Taylor', 'emma.taylor@example.com', '2233445566', 'emmataylor789', '321 Ash St, London');
+
