@@ -33,6 +33,8 @@ $_SESSION["officename"] = $row["office_name"];
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php">Booking Management</a>
         <a href="User_management.php">User Management</a>
+        <a href="report.php">report</a>
+        <a href="UserInfo.php">User</a>
         <div class="nav-button">
             <button class="btn white-btn" id="logoutBtn" onclick="showLogoutModal()">Log out</button>
         </div>

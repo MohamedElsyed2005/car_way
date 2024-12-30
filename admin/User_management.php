@@ -23,6 +23,8 @@ $office_id = $_SESSION["id"];
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php">Booking Management</a>
         <a href="User_management.php"class="active">User Management</a>
+        <a href="report.php">report</a>
+        <a href="UserInfo.php">User</a>
     </div>
 
     <!-- Main Content -->

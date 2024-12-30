@@ -28,6 +28,8 @@ $row = mysqli_fetch_assoc($result);
         <a href="car_management.php">Car Management</a>
         <a href="booking_management.php" class="active">Booking Management</a>
         <a href="User_management.php">User Management</a>
+        <a href="report.php">report</a>
+        <a href="UserInfo.php">User</a>
     </div>
 
     <!-- Main Content -->
